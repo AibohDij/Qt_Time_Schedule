@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>683</width>
+    <height>496</height>
+   </rect>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::PreventContextMenu</enum>
+  </property>
+  <property name="windowTitle">
+   <string>PKUToDo1.0</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resource.qrc">
+    <normaloff>:/icons/widgets_icons/check-sign-in-a-rounded-black-square.png</normaloff>:/icons/widgets_icons/check-sign-in-a-rounded-black-square.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tab_home">
+       <attribute name="icon">
+        <iconset resource="resource.qrc">
+         <normaloff>:/icons/widgets_icons/house-outline.png</normaloff>:/icons/widgets_icons/house-outline.png</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>主页</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_calendar">
+       <attribute name="icon">
+        <iconset resource="resource.qrc">
+         <normaloff>:/icons/widgets_icons/icons8-calendar-50.png</normaloff>:/icons/widgets_icons/icons8-calendar-50.png</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>日历</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_toDo">
+       <attribute name="icon">
+        <iconset resource="resource.qrc">
+         <normaloff>:/icons/widgets_icons/checked.png</normaloff>:/icons/widgets_icons/checked.png</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>代办</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_schedule">
+       <attribute name="icon">
+        <iconset resource="resource.qrc">
+         <normaloff>:/icons/widgets_icons/list (1).png</normaloff>:/icons/widgets_icons/list (1).png</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>专注</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_statistics">
+       <attribute name="icon">
+        <iconset resource="resource.qrc">
+         <normaloff>:/icons/widgets_icons/statistic-64.png</normaloff>:/icons/widgets_icons/statistic-64.png</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>数据统计</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_settings">
+       <attribute name="icon">
+        <iconset resource="resource.qrc">
+         <normaloff>:/icons/widgets_icons/icons8-setting-50.png</normaloff>:/icons/widgets_icons/icons8-setting-50.png</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>设置</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>683</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuPKUToDo">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+   </widget>
+   <addaction name="menuPKUToDo"/>
+  </widget>
+ </widget>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,38 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>widgets_icons/add-square-outlined-interface-button.png</file>
+        <file>widgets_icons/checked.png</file>
+        <file>widgets_icons/checkmark-verify-interface-symbol-button.png</file>
+        <file>widgets_icons/check-sign-in-a-rounded-black-square.png</file>
+        <file>widgets_icons/close-circular-button-symbol.png</file>
+        <file>widgets_icons/f353fd3d-af82-4cc6-80ef-83332edd1e12.jpg</file>
+        <file>widgets_icons/house-outline.png</file>
+        <file>widgets_icons/icons8-checked-64.png</file>
+        <file>widgets_icons/icons8-checkmark-64.png</file>
+        <file>widgets_icons/icons8-eye-50.png</file>
+        <file>widgets_icons/icons8-search-64.png</file>
+        <file>widgets_icons/icons8-search-80.png</file>
+        <file>widgets_icons/icons8-today-26.png</file>
+        <file>widgets_icons/list (1).png</file>
+        <file>widgets_icons/running-businessman-with-suitcase.png</file>
+        <file>widgets_icons/save-button-interface-symbol-of-outlined-diskette.png</file>
+        <file>widgets_icons/wristwatch.png</file>
+        <file>widgets_icons/Settings.png</file>
+        <file>widgets_icons/statistic-64.png</file>
+        <file>widgets_icons/themes.png</file>
+        <file>widgets_icons/ToDo.png</file>
+        <file>widgets_icons/users.png</file>
+        <file>widgets_icons/Close.png</file>
+        <file>widgets_icons/haveDone.png</file>
+        <file>widgets_icons/icons8-setting-50.png</file>
+        <file>widgets_icons/icons8-calendar-50.png</file>
+        <file>widgets_icons/icons8-green-67.png</file>
+        <file>widgets_icons/icons8-red-circle-48.png</file>
+        <file>widgets_icons/icons8-yellow-circle-48.png</file>
+        <file>widgets_icons/document.png</file>
+        <file>widgets_icons/icons8-rewind-button-round-24.png</file>
+        <file>widgets_icons/icons8-last-page-24.png</file>
+        <file>widgets_icons/icons8-next-page-24.png</file>
+        <file>widgets_icons/icons8-fast-forward-round-24.png</file>
+    </qresource>
+</RCC>
