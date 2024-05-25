@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>683</width>
-    <height>496</height>
+    <width>1000</width>
+    <height>600</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>600</height>
+   </size>
   </property>
   <property name="contextMenuPolicy">
    <enum>Qt::PreventContextMenu</enum>
@@ -54,13 +60,13 @@
         <string>代办</string>
        </attribute>
       </widget>
-      <widget class="QWidget" name="tab_schedule">
+      <widget class="QWidget" name="tab_search">
        <attribute name="icon">
         <iconset resource="resource.qrc">
-         <normaloff>:/icons/widgets_icons/list (1).png</normaloff>:/icons/widgets_icons/list (1).png</iconset>
+         <normaloff>:/icons/widgets_icons/icons8-search-80.png</normaloff>:/icons/widgets_icons/icons8-search-80.png</iconset>
        </attribute>
        <attribute name="title">
-        <string>专注</string>
+        <string>搜索</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tab_statistics">
@@ -91,7 +97,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>683</width>
+     <width>1000</width>
      <height>17</height>
     </rect>
    </property>

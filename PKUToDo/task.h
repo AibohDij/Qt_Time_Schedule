@@ -9,6 +9,16 @@
 #include <QDate>
 #include<QStackedWidget>
 #include <QMessageBox>
+#include <QComboBox>
+#include <QLineEdit>
+
+
+#include <QSpinBox>
+#include <QComboBox>
+#include <QCheckBox>
+#include <QDialogButtonBox>
+#include <QVBoxLayout>
+#include <QFormLayout>
 
 #include "taskdata.h"
 #include "mydatabase.h"
@@ -46,5 +56,35 @@ private:
     bool isModifyMode=false;
     TaskData originData;
 };
+
+
+class ToDoEditDialog : public QDialog {
+    Q_OBJECT
+
+public:
+    explicit ToDoEditDialog(QWidget *parent = nullptr);
+    ~ToDoEditDialog();
+    ToDoData generateToDo();
+    void setToDoData(const ToDoData &data);
+    void setDatabase(MyDataBase *db);
+
+private slots:
+    void on_buttonBox_accepted();
+
+private:
+    QLineEdit *nameLineEdit;
+    QSpinBox *hoursSpinBox;
+    QSpinBox *minutesSpinBox;
+    QComboBox *priorityComboBox;
+    QCheckBox *isDoneCheckBox;
+    QDialogButtonBox *buttonBox;
+
+    MyDataBase *m_db;
+    ToDoData m_toDoData;
+    bool m_isEditMode;
+signals:
+    void editFinished();
+};
+
 
 #endif // TASK_H

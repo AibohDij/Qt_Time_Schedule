@@ -3,9 +3,13 @@
 
 #include <QMainWindow>
 
+#include "mydatabase.h"
+#include "taskdata.h"
+#include "task.h"
 #include "STCalandarWidget.h"
 #include "STDateWidget.h"
 #include "timeaxis.h"
+#include "searchwidget.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -25,5 +29,6 @@ private:
     STCalandarWidget *calendar;
 private slots:
     void HaveDateChose(QDate selectedDate);
+    void onTabWidgetCurrentChanged(int index);
 };
 #endif // MAINWINDOW_H

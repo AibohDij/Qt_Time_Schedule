@@ -172,8 +172,8 @@ TaskData Task::generatetask()
         case SingleTask:{
             startTime = ui -> dateTimeEdit_start_once->dateTime();
             endTime = ui ->dateTimeEdit_end_once->dateTime();
-            qDebug() << "Start Time:" << startTime;
-            qDebug() << "End Time:" << endTime;
+            //qDebug() << "Start Time:" << startTime;
+            //qDebug() << "End Time:" << endTime;
             break;
         }
         case RepeatedTask:{
@@ -198,6 +198,7 @@ TaskData Task::generatetask()
         }
         case DeadlineTask:{
             endTime = ui->dateTimeEdit_deadline->dateTime();
+            startTime = ui->dateTimeEdit_deadline->dateTime().addSecs(-3600);
             break;
         }
     }
@@ -271,3 +272,116 @@ void Task::TimeSetting()
     }
 }
 
+
+
+
+ToDoEditDialog::ToDoEditDialog(QWidget *parent) :
+    QDialog(parent),
+    m_db(nullptr),
+    m_isEditMode(false)
+{
+    // 创建界面控件
+    nameLineEdit = new QLineEdit(this);
+    hoursSpinBox = new QSpinBox(this);
+    minutesSpinBox = new QSpinBox(this);
+    priorityComboBox = new QComboBox(this);
+    isDoneCheckBox = new QCheckBox(this);
+    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
+    buttonBox->button(QDialogButtonBox::Ok)->setText("确定");
+    buttonBox->button(QDialogButtonBox::Cancel)->setText("取消");
+
+    // 配置控件
+    hoursSpinBox->setRange(0, 23); // 小时范围：0 到 23
+    minutesSpinBox->setRange(0, 59); // 分钟范围：0 到 59
+
+    priorityComboBox->addItem("低", LowPriority);
+    priorityComboBox->addItem("中", MediumPriority);
+    priorityComboBox->addItem("高", HighPriority);
+
+    isDoneCheckBox->setChecked(false); // 默认未完成
+
+    // 布局
+    QFormLayout *formLayout = new QFormLayout;
+    formLayout->addRow("代办事项:", nameLineEdit);
+    formLayout->addRow("预期时间（小时）:", hoursSpinBox);
+    formLayout->addRow("预期时间（分钟）:", minutesSpinBox);
+    formLayout->addRow("优先级:", priorityComboBox);
+    formLayout->addRow("已完成:", isDoneCheckBox);
+
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->addLayout(formLayout);
+    mainLayout->addWidget(buttonBox);
+
+    setLayout(mainLayout);
+
+    // 连接信号槽
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &ToDoEditDialog::on_buttonBox_accepted);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+}
+
+ToDoEditDialog::~ToDoEditDialog() {}
+
+void ToDoEditDialog::setToDoData(const ToDoData &data) {
+    m_toDoData = data;
+    m_isEditMode = true;
+
+    nameLineEdit->setText(m_toDoData.name());
+    int totalSeconds = m_toDoData.expectTime();
+    int hours = totalSeconds / 3600;
+    int minutes = (totalSeconds % 3600) / 60;
+    hoursSpinBox->setValue(hours);
+    minutesSpinBox->setValue(minutes);
+    priorityComboBox->setCurrentIndex(priorityComboBox->findData(m_toDoData.priority()));
+    isDoneCheckBox->setChecked(m_toDoData.isDone());
+}
+ToDoData ToDoEditDialog::generateToDo(){
+    ToDoData newdata;
+    newdata.setName(nameLineEdit->text());
+    int totalSeconds = hoursSpinBox->value() * 3600 + minutesSpinBox->value() * 60;
+    newdata.setExpectTime(totalSeconds);
+    newdata.setPriority(static_cast<Priority>(priorityComboBox->currentData().toInt()));
+    newdata.setIsDone(isDoneCheckBox->isChecked());
+    return newdata;
+}
+
+
+
+void ToDoEditDialog::setDatabase(MyDataBase *db) {
+    m_db = db;
+}
+
+void ToDoEditDialog::on_buttonBox_accepted() {
+    if (nameLineEdit->text().isEmpty()) {
+        QMessageBox::warning(this, "错误", "代办名称不能为空！");
+        return;
+    }
+
+    qDebug()<<"ToDo accept";
+    MyDataBase db;db.openDb();
+    qDebug()<<"ToDo accept";
+    ToDoData oriData = m_toDoData;
+    m_toDoData.setName(nameLineEdit->text());
+    int totalSeconds = hoursSpinBox->value() * 3600 + minutesSpinBox->value() * 60;
+    if (!totalSeconds) {
+        QMessageBox::warning(this, "错误", "预期时间不能为空！");
+        return;
+    }
+    m_toDoData.setExpectTime(totalSeconds);
+    m_toDoData.setPriority(static_cast<Priority>(priorityComboBox->currentData().toInt()));
+    m_toDoData.setIsDone(isDoneCheckBox->isChecked());
+
+    if (m_isEditMode) {
+        // 修改模式，更新数据库
+        if (db.openDb()) {
+            db.modifyToDoData(oriData, m_toDoData);
+        }
+    } else {
+        // 新建模式，插入数据库
+        if (db.openDb()) {
+            db.insertToDoData(m_toDoData);
+        }
+    }
+    emit editFinished();
+    accept();
+    //accept();
+}

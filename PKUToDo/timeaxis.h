@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsLineItem>
 #include <QGraphicsProxyWidget>
+#include <QGraphicsTextItem>
 #include <QDebug>
 #include <QMainWindow>
 #include "taskwidget.h"
@@ -31,6 +32,7 @@ private:
     void resetScene();
 
     QGraphicsScene *scene;
+    QGraphicsTextItem *dateTextItem;
     int windowWidth;
     int windowHeight;
     qreal stride;

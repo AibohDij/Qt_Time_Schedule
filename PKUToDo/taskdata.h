@@ -8,7 +8,8 @@
 enum Priority {
     HighPriority,
     MediumPriority,
-    LowPriority
+    LowPriority,
+    None
 };
 //类型暂定有三种
 enum TaskType {
@@ -64,5 +65,31 @@ private:
     bool overdue=false;
     std::array<bool, 7> m_repeatDays;
 };
+
+
+class ToDoData {
+public:
+    ToDoData(const QString &name = "", const int &expectTime = 0,
+             Priority priority = MediumPriority, bool isDone = false);
+
+    QString name() const;
+    void setName(const QString &name);
+
+    int expectTime() const;
+    void setExpectTime(const int &expectTime);
+
+    Priority priority() const;
+    void setPriority(Priority priority);
+
+    bool isDone() const;
+    void setIsDone(bool isDone);
+
+private:
+    QString m_name;
+    int m_expectTime;
+    Priority m_priority;
+    bool m_isDone;
+};
+
 
 #endif // TASKDATA_H

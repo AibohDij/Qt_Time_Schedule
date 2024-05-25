@@ -35,9 +35,21 @@ public:
     //查找函数群
     void queryTaskData();
     QList<TaskData> findTaskData(const QString &condition);
+    QList<TaskData> findTaskData(const QString &taskName, const QDate &startDate, const QDate &endDate, Priority priority);
     QList<TaskData> findTaskDataByDate(const QDate &date);
     //去重
     void removeDuplicateTasks();
+    //Todo类相关函数定义
+    // 插入ToDoData
+    void insertToDoData(const ToDoData &toDoData);
+    void deleteToDoData(const ToDoData &toDoData);
+    void modifyToDoData(const ToDoData &toDoData, const ToDoData &newToDoData);
+    void queryToDoData();
+    QList<ToDoData> findToDoData(const QString &condition);
+    void deleteToDoData(int toDoId);
+    void modifyToDoData(const ToDoData &toDoData, int toDoId);
+    void removeDuplicateToDoData();
+
 private:
     QSqlDatabase database;
 };

@@ -101,4 +101,40 @@ void TaskData::setRepeatDaysFromInt(int repeatDays) {
 }
 
 
+ToDoData::ToDoData(const QString &name,const int& expectTime, Priority priority, bool isDone)
+    : m_name(name), m_expectTime(expectTime), m_priority(priority), m_isDone(isDone) {}
+
+QString ToDoData::name() const {
+    return m_name;
+}
+
+void ToDoData::setName(const QString &name) {
+    m_name = name;
+}
+
+int ToDoData::expectTime() const {
+    return m_expectTime;
+}
+
+void ToDoData::setExpectTime(const int& expectTime) {
+    m_expectTime = expectTime;
+}
+
+Priority ToDoData::priority() const {
+    return m_priority;
+}
+
+void ToDoData::setPriority(Priority priority) {
+    m_priority = priority;
+}
+
+bool ToDoData::isDone() const {
+    return m_isDone;
+}
+
+void ToDoData::setIsDone(bool isDone) {
+    m_isDone = isDone;
+}
+
+
 

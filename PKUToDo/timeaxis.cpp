@@ -1,5 +1,6 @@
 #include "timeaxis.h"
 #include <QDebug>
+#include <QIcon>
 TimeAxis::TimeAxis(int windowWidth, int windowHeight, qreal stride, QDate date, QWidget *parent)
     : QGraphicsView(parent), windowWidth(windowWidth), windowHeight(windowHeight), stride(stride), today(date) {
     scene = new QGraphicsScene(this);
@@ -7,9 +8,21 @@ TimeAxis::TimeAxis(int windowWidth, int windowHeight, qreal stride, QDate date, 
     setFixedSize(windowWidth, windowHeight);
     setupTimeAxis();
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
 }
 
 void TimeAxis::setupTimeAxis() {
+    QString dateText = today.toString("yyyy-MM-dd");
+    dateTextItem = scene->addText(dateText);
+
+    QFont font = dateTextItem->font();
+    font.setPointSize(14); // Adjust size as needed
+    font.setBold(true);
+    dateTextItem->setFont(font);
+
+    QRectF textRect = dateTextItem->boundingRect();
+    dateTextItem->setPos((windowWidth - textRect.width()*2) / 2, -textRect.height() - 10);
+
     for (int hour = 0; hour <= 24; ++hour) {
         qreal y = hour * stride;
         QGraphicsLineItem *line = new QGraphicsLineItem(-4, y, windowWidth - 50, y);
@@ -27,6 +40,7 @@ void TimeAxis::setupTimeAxis() {
         qreal textWidth = textItem->boundingRect().width();
         textItem->setPos(-textWidth - 5, y - 10);
     }
+
 }
 
 void TimeAxis::updateTimeAxis(TaskWidget* widget) {

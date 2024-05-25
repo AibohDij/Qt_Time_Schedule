@@ -23,6 +23,9 @@ MyDataBase::MyDataBase() {
 
 bool MyDataBase::openDb()
 {
+    if(database.isOpen()) {
+        qDebug()<<"isOpened()";
+        return true;}
     if (!database.open())
     {
         qDebug() << "Error: Failed to connect database." << database.lastError();
@@ -57,7 +60,20 @@ void MyDataBase::createTable()
     else{
         qDebug() << "TaskTable created!";
     }
+    //创建代办事项的表
+    sqlQuery.prepare("CREATE TABLE IF NOT EXISTS todo_data_table ("
+                     "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                     "name TEXT, "
+                     "duration INTEGER, "
+                     "priority INTEGER, "
+                     "is_done INTEGER)");
 
+    if(!sqlQuery.exec()){
+        qDebug() << "Error: Fail to create table. " << sqlQuery.lastError();
+    }
+    else{
+        qDebug() << "ToDoTable created!";
+    }
 }
 
 bool MyDataBase::isTableExist(QString &tableName)
@@ -245,6 +261,7 @@ void MyDataBase::modifyTaskData(const TaskData &taskData, const TaskData &newTas
 
 
 void MyDataBase::queryTaskData() {
+    qDebug()<<"queryTaskData";
     QSqlQuery sqlQuery("SELECT * FROM task_data_table");
     while (sqlQuery.next()) {
         int id = sqlQuery.value("id").toInt();
@@ -274,21 +291,35 @@ void MyDataBase::queryTaskData() {
     }
 }
 
-QList<TaskData> MyDataBase::findTaskData(const QString &condition)
+QList<TaskData> MyDataBase::findTaskData(const QString &taskName, const QDate &startDate, const QDate &endDate, Priority priority)
 {
     QList<TaskData> taskList;
     QSqlQuery query;
+
+    // 构建查询条件字符串
+    QString condition = "1=1"; // 确保基础条件总是为真，便于后续添加条件
+    if (!taskName.isEmpty()) {
+        condition += QString(" AND taskname LIKE '%%1%'").arg(taskName);
+    }
+    if (startDate.isValid()) {
+        condition += QString(" AND start_time >= '%1'").arg(startDate.toString("yyyy-MM-dd"));
+    }
+    if (endDate.isValid()) {
+        condition += QString(" AND end_time <= '%1'").arg(endDate.toString("yyyy-MM-dd"));
+    }
+    if (priority == HighPriority||priority == MediumPriority||priority == LowPriority) { // 假设 Priority::None 表示不筛选优先级
+        condition += QString(" AND priority = %1").arg(static_cast<int>(priority));
+    }
+
     QString queryString = "SELECT * FROM task_data_table WHERE " + condition;
     query.prepare(queryString);
 
-    if (!query.exec())
-    {
+    if (!query.exec()) {
         qDebug() << "Error: Failed to execute query. " << query.lastError();
         return taskList;
     }
 
-    while (query.next())
-    {
+    while (query.next()) {
         QDateTime startTime = query.value("start_time").toDateTime();
         QDateTime endTime = query.value("end_time").toDateTime();
         QString name = query.value("taskname").toString();
@@ -304,6 +335,45 @@ QList<TaskData> MyDataBase::findTaskData(const QString &condition)
         taskList.append(task);
     }
 
+    return taskList;
+}
+
+
+
+
+
+//严格匹配
+QList<TaskData> MyDataBase::findTaskData(const QString &condition)
+{
+    QList<TaskData> taskList;
+    QSqlQuery query;
+    QString queryString = "SELECT * FROM task_data_table WHERE " + condition;
+    query.prepare(queryString);
+    qDebug()<<"target condition"<<condition;
+    if (!query.exec())
+    {
+        qDebug() << "Error: Failed to execute query. " << query.lastError();
+        return taskList;
+    }
+    int rowCount=0;
+    while (query.next())
+    {
+        rowCount++;
+        QDateTime startTime = query.value("start_time").toDateTime();
+        QDateTime endTime = query.value("end_time").toDateTime();
+        QString name = query.value("taskname").toString();
+        QString detail = query.value("taskdetails").toString();
+        TaskType type = static_cast<TaskType>(query.value("type").toInt());
+        Priority priority = static_cast<Priority>(query.value("priority").toInt());
+        bool isDone = query.value("is_done").toInt() == 1;
+        bool isOverdue = query.value("overdue").toInt() == 1;
+        int repeatDays = query.value("repeat_days").toInt();
+
+        TaskData task(startTime, endTime, name, detail, priority, type, isDone, isOverdue);
+        task.setRepeatDaysFromInt(repeatDays);
+        taskList.append(task);
+    }
+    qDebug()<<"findCount"<<rowCount;
     return taskList;
 }
 
@@ -350,3 +420,144 @@ void MyDataBase::removeDuplicateTasks() {
         qDebug() << "Duplicate tasks removed successfully.";
     }
 }
+
+
+//Todo类的相关操作函数
+void MyDataBase::insertToDoData(const ToDoData &toDoData) {
+    QSqlQuery query;
+    query.prepare("INSERT INTO todo_data_table (name, duration, priority, is_done) "
+                  "VALUES (:name, :duration, :priority, :is_done)");
+    query.bindValue(":name", toDoData.name());
+    query.bindValue(":duration", toDoData.expectTime()); // 使用 toString("hh:mm:ss") 表示持续时间
+    query.bindValue(":priority", static_cast<int>(toDoData.priority()));
+    query.bindValue(":is_done", toDoData.isDone() ? 1 : 0);
+
+    if (!query.exec()) {
+        qDebug() << "Error: Failed to insert ToDo data. " << query.lastError();
+    } else {
+        qDebug() << "ToDo data inserted successfully!";
+    }
+}
+
+void MyDataBase::modifyToDoData(const ToDoData &toDoData, int toDoId) {
+    QSqlQuery query;
+    query.prepare("UPDATE todo_data_table SET name = :name, duration = :duration, priority = :priority, is_done = :is_done "
+                  "WHERE id = :id");
+    query.bindValue(":name", toDoData.name());
+    query.bindValue(":duration", toDoData.expectTime()); // 使用 toString("hh:mm:ss") 表示持续时间
+    query.bindValue(":priority", static_cast<int>(toDoData.priority()));
+    query.bindValue(":is_done", toDoData.isDone() ? 1 : 0);
+    query.bindValue(":id", toDoId);
+
+    if (!query.exec()) {
+        qDebug() << "Error: Failed to modify ToDo data. " << query.lastError();
+    } else {
+        qDebug() << "ToDo data modified successfully!";
+    }
+}
+
+void MyDataBase::deleteToDoData(const ToDoData &toDoData) {
+    QSqlQuery query;
+    query.prepare("DELETE FROM todo_data_table WHERE name = :name AND duration = :duration AND priority = :priority AND is_done = :is_done");
+    query.bindValue(":name", toDoData.name());
+    query.bindValue(":duration", toDoData.expectTime()); // 使用 toString("hh:mm:ss") 表示持续时间
+    query.bindValue(":priority", static_cast<int>(toDoData.priority()));
+    query.bindValue(":is_done", toDoData.isDone() ? 1 : 0);
+
+    if (!query.exec()) {
+        qDebug() << "Error: Failed to delete ToDo data. " << query.lastError();
+    } else {
+        qDebug() << "ToDo data deleted successfully!";
+    }
+}
+
+void MyDataBase::modifyToDoData(const ToDoData &toDoData, const ToDoData &newToDoData) {
+    QSqlQuery query;
+    query.prepare("UPDATE todo_data_table SET name = :new_name, duration = :new_duration, priority = :new_priority, is_done = :new_is_done "
+                  "WHERE name = :name AND duration = :duration AND priority = :priority AND is_done = :is_done");
+    query.bindValue(":new_name", newToDoData.name());
+    query.bindValue(":new_duration", newToDoData.expectTime());
+    query.bindValue(":new_priority", static_cast<int>(newToDoData.priority()));
+    query.bindValue(":new_is_done", newToDoData.isDone() ? 1 : 0);
+
+    query.bindValue(":name", toDoData.name());
+    query.bindValue(":duration", toDoData.expectTime());
+    query.bindValue(":priority", static_cast<int>(toDoData.priority()));
+    query.bindValue(":is_done", toDoData.isDone() ? 1 : 0);
+
+    if (!query.exec()) {
+        qDebug() << "Error: Failed to modify ToDo data. " << query.lastError();
+    } else {
+        qDebug() << "ToDo data modified successfully!";
+    }
+}
+
+QList<ToDoData> MyDataBase::findToDoData(const QString &condition) {
+    QList<ToDoData> toDoList;
+    QSqlQuery query;
+    QString queryString = "SELECT * FROM todo_data_table WHERE " + condition;
+    query.prepare(queryString);
+
+    if (!query.exec()) {
+        qDebug() << "Error: Failed to execute query. " << query.lastError();
+        return toDoList;
+    }
+
+    int rowCount = 0;
+    while (query.next()) {
+        rowCount++;
+        QString name = query.value("name").toString();
+        int duration = query.value("duration").toInt(); //
+        Priority priority = static_cast<Priority>(query.value("priority").toInt());
+        bool isDone = query.value("is_done").toInt() == 1;
+
+        ToDoData toDoData(name, duration, priority); // 传入持续时间参数
+        toDoData.setIsDone(isDone);
+        toDoList.append(toDoData);
+    }
+    qDebug() << "Find count"<< rowCount;
+    return toDoList;
+}
+
+void MyDataBase::removeDuplicateToDoData() {
+    QSqlQuery query;
+
+    // 查询重复的记录
+    QString duplicateQuery = R"(
+        DELETE FROM todo_data_table
+        WHERE rowid NOT IN (
+            SELECT MIN(rowid)
+            FROM todo_data_table
+            GROUP BY name, duration, priority, is_done
+        )
+    )";
+
+    query.prepare(duplicateQuery);
+
+    if (!query.exec()) {
+        qDebug() << "Error: Failed to remove duplicate ToDo data. " << query.lastError();
+    } else {
+        qDebug() << "Duplicate ToDo data removed successfully.";
+    }
+}
+
+void MyDataBase::queryToDoData() {
+    qDebug() << "queryToDoData";
+    QSqlQuery sqlQuery("SELECT * FROM todo_data_table");
+    while (sqlQuery.next()) {
+        int id = sqlQuery.value("id").toInt();
+        QString name = sqlQuery.value("name").toString();
+        int duration = sqlQuery.value("duration").toInt();
+        Priority priority = static_cast<Priority>(sqlQuery.value("priority").toInt());
+        bool isDone = sqlQuery.value("is_done").toInt() == 1;
+
+        ToDoData todoData(name, duration, priority, isDone);
+
+        qDebug() << "ID:" << id
+                 << ", Name:" << todoData.name()
+                 << ", Duration (seconds):" << todoData.expectTime()
+                 << ", Priority:" << static_cast<int>(todoData.priority())
+                 << ", Is Done:" << todoData.isDone();
+    }
+}
+
