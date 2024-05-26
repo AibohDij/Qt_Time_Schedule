@@ -66,6 +66,7 @@ private:
     std::array<bool, 7> m_repeatDays;
 };
 
+///////////////////////////////////////////////////////////////////////////////
 
 class ToDoData {
 public:
@@ -91,5 +92,30 @@ private:
     bool m_isDone;
 };
 
+///////////////////////////////////////////////////////////////////////////////////
+
+class StatisticData {
+public:
+    StatisticData(const QString &name = "", const QDateTime &startTime = QDateTime(),
+                  const QDateTime &endTime = QDateTime(), const int &count = 0);
+
+    QString name() const;
+    void setName(const QString &name);
+
+    QDateTime startTime() const;
+    void setStartTime(const QDateTime &startTime);
+
+    QDateTime endTime() const;
+    void setEndTime(const QDateTime &endTime);
+
+    int count() const;
+    void setCount(const int &count);
+
+private:
+    QString m_name;
+    QDateTime m_startTime;
+    QDateTime m_endTime;
+    int m_count;
+};
 
 #endif // TASKDATA_H

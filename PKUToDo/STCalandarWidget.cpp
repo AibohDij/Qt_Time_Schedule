@@ -4,7 +4,7 @@
 
 STCalandarWidget::STCalandarWidget(QWidget* parrent /* = nullptr */) :QDialog(parrent) {
     //this->setStyleSheet(QString::fromLocal8Bit("font:15px 等线; background-color:rgb(250,250,250)"));
-    this->setStyleSheet(QString::fromLocal8Bit("font:16px 微雅软黑; background-color:rgb(250,250,250)"));
+    //this->setStyleSheet(QString::fromLocal8Bit("font:16px 微雅软黑; background-color:rgb(250,250,250)"));
     this->setMinimumSize(800, 450);
     this->setMaximumSize(800, 450);
     Qt::WindowFlags flags = Qt::Dialog;
@@ -12,6 +12,13 @@ STCalandarWidget::STCalandarWidget(QWidget* parrent /* = nullptr */) :QDialog(pa
     setWindowFlags(flags);
     setMouseTracking(true);
     init();
+    QString styleSheet =  // 设置浅灰色背景
+        "QPushButton {"
+        "border: 1px solid gray;" // 设置按钮边框为2像素宽的黑色实线边框
+        "}";
+
+    this->setStyleSheet(styleSheet);
+    //this->setStyleSheet(styleSheet);
 }
 
 STCalandarWidget::~STCalandarWidget()
@@ -26,6 +33,11 @@ void STCalandarWidget::SetCurrentDate(int year, int month, int day)
 QDate STCalandarWidget::GetCurrentDate()
 {
     return currentDate;
+}
+
+void STCalandarWidget::setTheme(QString s)
+{
+    theme=s;
 }
 
 void STCalandarWidget::FillCalandar()
@@ -68,6 +80,8 @@ void STCalandarWidget::initCalandar()
         datewidgets[i] = new STDateWidget(this);
         datewidgets[i]->setGeometry(10 + i % 7 * 80, 80 + i / 7 * 60, 80, 60);
         connect(datewidgets[i], SIGNAL(updateCurrentDate(QDate)), this, SLOT(HaveDateSelect(QDate)));
+        datewidgets[i]->setTheme(theme);
+
     }
     for (int i = 0; i < 42; i++) {
         if (i / 7 == 0 ) {//第一排
@@ -134,6 +148,7 @@ void STCalandarWidget::init()
 
     cdlabel = new QLabel(this);
     cdlabel->setGeometry(255, 10, 100, 40);
+    cdlabel->setObjectName("DateLabel_calender");
     cdlabel->setText(getFormatMonth());//当前时间
 
     nextMonthButton = new QPushButton(this);
@@ -153,16 +168,22 @@ void STCalandarWidget::init()
     yearLineEdit =  new QLineEdit(QString::number(currentDate.year()), this);//设置年
     yearLineEdit->setValidator(new QIntValidator(2000, 3000, this));//年区间范围
     yearLineEdit->setGeometry(580,10,60,30);
+    yearLineEdit->setObjectName("YearLineEdit");
 
     monthSpinBox = new QSpinBox(this);//设置月
     monthSpinBox->setMinimum(1); // 设置最小月份
     monthSpinBox->setMaximum(12); // 设置最大月份
     monthSpinBox->setValue(currentDate.month()); // 设置当前月份
     monthSpinBox->setGeometry(650,10,50,30);
+    monthSpinBox->setObjectName("MonthSpinBox");
 
-    setYearMonth = new QPushButton("跳转",this);
-    setYearMonth->setGeometry(710,10,50,30);
 
+    setYearMonth = new QPushButton( this);
+    setYearMonth->setGeometry(710, 10, 100, 30); // 增加宽度为 70 像素
+    QIcon Icon5(":/icons/widgets_icons/icons8-enter-50.png");
+    setYearMonth->setIcon(Icon5);
+    setYearMonth->setIconSize(QSize(24, 24));
+    // 设置样式表
     connect(lastYearButton, SIGNAL(clicked()), this, SLOT(JumpLastYear()));
     connect(lastMonthButton, SIGNAL(clicked()), this, SLOT(JumpLastMonth()));
     connect(nextMonthButton, SIGNAL(clicked()), this, SLOT(JumpNextMonth()));

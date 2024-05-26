@@ -13,27 +13,35 @@ void SearchWidget::setupUi() {
     QHBoxLayout *searchLayout = new QHBoxLayout();
 
     QLabel *taskNameLabel = new QLabel("任务名称:", this);
+    taskNameLabel->setObjectName("TaskNameLabel");
     taskNameEdit = new QLineEdit(this);
+    taskNameEdit->setObjectName("TaskNameEdit");
 
     QLabel *startDateLabel = new QLabel("开始日期:", this);
-    startDateEdit = new QDateEdit(QDate::currentDate(), this);  // 初始化为今天
+    startDateLabel->setObjectName("StartDateLabel");
+    startDateEdit = new QDateEdit(QDate::currentDate(), this);
     startDateEdit->setDisplayFormat("yyyy-MM-dd");
     startDateEdit->setCalendarPopup(true);
+    startDateEdit->setObjectName("StartDateEdit");
 
     QLabel *endDateLabel = new QLabel("结束日期:", this);
-    endDateEdit = new QDateEdit(QDate::currentDate(), this);  // 初始化为今天
+    endDateLabel->setObjectName("EndDateLabel");
+    endDateEdit = new QDateEdit(QDate::currentDate(), this);
     endDateEdit->setDisplayFormat("yyyy-MM-dd");
     endDateEdit->setCalendarPopup(true);
+    endDateEdit->setObjectName("EndDateEdit");
 
     startDateEdit->setMinimumWidth(100);
     endDateEdit->setMinimumWidth(100);
 
     QLabel *priorityLabel = new QLabel("优先级:", this);
+    priorityLabel->setObjectName("PriorityLabel");
     priorityComboBox = new QComboBox(this);
+    priorityComboBox->setObjectName("PriorityComboBox");
     priorityComboBox->addItem("所有优先级");
-    priorityComboBox->addItem("高优先级", HighPriority);
-    priorityComboBox->addItem("中优先级", MediumPriority);
-    priorityComboBox->addItem("低优先级", LowPriority);
+    priorityComboBox->addItem("高优先级");
+    priorityComboBox->addItem("中优先级");
+    priorityComboBox->addItem("低优先级");
 
     searchButton = new QPushButton("搜索", this);
     connect(searchButton, &QPushButton::clicked, this, &SearchWidget::onSearchButtonClicked);
@@ -56,9 +64,10 @@ void SearchWidget::setupUi() {
     resultsTable = new QTableWidget(this);
     resultsTable->setColumnCount(1);
     resultsTable->horizontalHeader()->hide();
-    resultsTable->verticalHeader()->hide();
+    //resultsTable->verticalHeader()->hide();
     resultsTable->setShowGrid(false);
     resultsTable->setColumnWidth(0, 500);
+
     resultsTable->setStyleSheet("QTableWidget::item { border: 0.5px solid black; }");
     mainLayout->addLayout(searchLayout);
     mainLayout->addWidget(resultsTable);
@@ -135,6 +144,7 @@ void SearchResultWidget::contextMenuEvent(QContextMenuEvent *event)
     connect(editAction,&QAction::triggered,this,&SearchResultWidget::onEdit);
     connect(deleteAction,&QAction::triggered,this,&SearchResultWidget::onDelete);
     contextMenu.addAction(editAction);
+    contextMenu.addSeparator();
     contextMenu.addAction(deleteAction);
 
     contextMenu.setStyleSheet("background-color: white;");
@@ -157,19 +167,21 @@ void SearchResultWidget::setupUi() {
                                        .arg(m_taskData.endTime().toString("yyyy-MM-dd HH:mm")));
         }
 
-        nameLabel = new QLabel(QString("任务名称: %1").arg(m_taskData.name()), this);
+        nameLabel = new QLabel(QString("计划: %1").arg(m_taskData.name()), this);
     } else if (m_taskData.type() == RepeatedTask) {
         timeLabel = new QLabel(QString("时间段: %1 - %2  具体日期请看详情")
                                    .arg(m_taskData.startTime().toString("HH:mm"))
                                    .arg(m_taskData.endTime().toString("HH:mm")), this);
-        nameLabel = new QLabel(QString("任务名称: %1").arg(m_taskData.name()), this);
+        nameLabel = new QLabel(QString("计划: %1").arg(m_taskData.name()), this);
     } else {
         timeLabel = new QLabel(QString("截止时间:%2 %1 ")
                                    .arg(m_taskData.endTime().toString("HH:mm"))
                                    .arg(m_taskData.endTime().toString("yyyy-MM-dd")), this);
-        nameLabel = new QLabel(QString("任务名称: %1").arg(m_taskData.name()), this);
+        nameLabel = new QLabel(QString("计划: %1").arg(m_taskData.name()), this);
     }
 
+    timeLabel->setObjectName("timeLabel_search");
+    nameLabel->setObjectName("nameLabel_search");
     // 设置最小宽度
     timeLabel->setMinimumWidth(180);
     nameLabel->setMinimumWidth(180);
@@ -181,10 +193,23 @@ void SearchResultWidget::setupUi() {
     layout->addStretch(1);
     setLayout(layout);
 
+    QFile file(":/styles/styles/testStyle.qss");
+    if (file.open(QFile::ReadOnly | QFile::Text)) {
+        QTextStream stream(&file);
+        QString styleSheet = stream.readAll();
+        this->setStyleSheet(styleSheet);
+    }
+
+    // 获取背景颜色，并确保优先级高于 QSS 文件中的样式
     QString bgColor = getPriorityColor(m_taskData.priority());
-    setStyleSheet(QString("background-color: %1; border: 1px solid black;").arg(bgColor));
+    setStyleSheet(this->styleSheet() + QString("QLabel#timeLabel_search,QLabel#nameLabel_search { background-color: %1; }").arg(bgColor));
+    // setStyleSheet(QString("background-color: %1; "
+    //                            "border: 1px solid black; "
+    //                            "border-radius: 15px; "
+    //                            "font-family:  'STFangsong'; "
+    //                             "font-weight: bold;"
+    //                            "font-size: 11pt;").arg(bgColor));
     //setStyleSheet("background-color:blue;");
-    setAutoFillBackground(true);
 
 }
 
@@ -195,7 +220,7 @@ QString SearchResultWidget::getPriorityColor(Priority priority) {
     case MediumPriority:
         return "rgba(255, 255, 0, 150)";
     case LowPriority:
-        return "rgba(0, 255, 0, 150)";
+        return "#9ACD32";
     default:
         return "rgba(200, 200, 255, 150)";
     }
@@ -341,23 +366,34 @@ void TodayTasksWidget::displayTodayTasks()
 ToDoWidget::ToDoWidget(const ToDoData &toDoData, QWidget *parent) :
     QWidget(parent),m_data(toDoData) {
     nameLabel = new QLabel(QString("代办： %1").arg(toDoData.name()), this);
+    QString labelStyleSheet = "border: 1px solid black;"
+                              "border-radius: 15px;"
+                              "padding: 5px;"
+                              "font-family: 'STFangsong';"
+                              "font-weight:bold;"
+                              "color: black;"
+                              "font-size: 11pt;";
+    nameLabel->setStyleSheet(labelStyleSheet);
+
+
     if (toDoData.isDone()) {
-        nameLabel->setStyleSheet("text-decoration: line-through;");
+        nameLabel->setStyleSheet(labelStyleSheet+QString("text-decoration: line-through;"));
         isDone = true;
     }
     int totalSeconds = toDoData.expectTime();
     int hours = totalSeconds / 3600;
     int minutes = (totalSeconds % 3600)/60;
     expectTimeLabel = new QLabel(QString("预计：%1小时 %2分钟").arg(hours).arg(minutes), this); // 按小时和分钟显示
-
+    expectTimeLabel->setStyleSheet(labelStyleSheet);
     startButton = new QPushButton("开始", this);
-    startButton->setStyleSheet("background-color: white;");
+    //startButton->setStyleSheet("background-color: white;");
     connect(startButton,&QPushButton::clicked,this,&ToDoWidget::on_startButton_clicked);
     // 设置布局
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->addWidget(nameLabel);
     layout->addWidget(expectTimeLabel);
     layout->addWidget(startButton);
+
 
     // 根据优先级设置背景颜色
     setPriorityColor(toDoData.priority());
@@ -374,10 +410,12 @@ void ToDoWidget::contextMenuEvent(QContextMenuEvent *event)
     connect(deleteAction,&QAction::triggered,this,&ToDoWidget::onDelete);
 
     contextMenu.addAction(editAction);
+    contextMenu.addSeparator();
     contextMenu.addAction(deleteAction);
     if(isDone){
         QAction *renewAction = new QAction("恢复",this);
         connect(renewAction,&QAction::triggered,this,&ToDoWidget::onRenew);
+        contextMenu.addSeparator();
         contextMenu.addAction(renewAction);
     }
     contextMenu.setStyleSheet("background-color: white;");
@@ -391,7 +429,7 @@ void ToDoWidget::setPriorityColor(Priority priority) {
         setStyleSheet("background-color: #9ACD32;"); // 绿色
         break;
     case MediumPriority:
-        setStyleSheet("background-color: #FFFF00;"); // 黄色
+        setStyleSheet("background-color: rgb(215, 185, 142);"); // 黄色
         break;
     case HighPriority:
         setStyleSheet("background-color: #FF6347;"); // 红色

@@ -74,6 +74,20 @@ void MyDataBase::createTable()
     else{
         qDebug() << "ToDoTable created!";
     }
+
+    QString createTableSQL = "CREATE TABLE IF NOT EXISTS statistic_table ("
+                             "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                             "task_name TEXT, "
+                             "start_time DATETIME, "
+                             "end_time DATETIME"
+                             ");";
+
+    // 执行 SQL 查询来创建新表格
+    if (!sqlQuery.exec(createTableSQL)) {
+        qDebug() << "Error: Fail to create table. " << sqlQuery.lastError();
+    } else {
+        qDebug() << "statistic table created!";
+    }
 }
 
 bool MyDataBase::isTableExist(QString &tableName)
@@ -129,7 +143,9 @@ void MyDataBase::closeDb(void)
 }
 
 
-//针对task_data_table的函数
+
+//针对task_data_table的函数///////////////////////////////////////////////////////////////////////////////////
+
 void MyDataBase::insertTaskData(const TaskData &taskData) {
     QSqlQuery query;
     query.prepare("INSERT INTO task_data_table (taskname, taskdetails, type , priority, start_time, end_time, is_done, overdue, repeat_days) "
@@ -422,7 +438,8 @@ void MyDataBase::removeDuplicateTasks() {
 }
 
 
-//Todo类的相关操作函数
+//Todo类的相关操作函数//////////////////////////////////////////////////////////////
+
 void MyDataBase::insertToDoData(const ToDoData &toDoData) {
     QSqlQuery query;
     query.prepare("INSERT INTO todo_data_table (name, duration, priority, is_done) "
@@ -560,4 +577,146 @@ void MyDataBase::queryToDoData() {
                  << ", Is Done:" << todoData.isDone();
     }
 }
+
+///针对统计数据的函数/////////////////////////////////////////////
+void MyDataBase::insertStatisticData(const StatisticData &statisticData) {
+    QSqlQuery query;
+    query.prepare("INSERT INTO statistic_table (task_name, start_time, end_time) "
+                  "VALUES (:task_name, :start_time, :end_time)");
+    query.bindValue(":task_name", statisticData.name());
+    query.bindValue(":start_time", statisticData.startTime().toString("yyyy-MM-dd hh:mm:ss"));
+    query.bindValue(":end_time", statisticData.endTime().toString("yyyy-MM-dd hh:mm:ss"));
+
+    if (!query.exec()) {
+        qDebug() << "Error: Failed to insert Statistic data. " << query.lastError();
+    } else {
+        qDebug() << "Statistic data inserted successfully!";
+    }
+}
+
+void MyDataBase::modifyStatisticData(const StatisticData &statisticData, const StatisticData &newStatisticData) {
+    QSqlQuery query;
+    query.prepare("UPDATE statistic_table SET task_name = :new_task_name, start_time = :new_start_time, end_time = :new_end_time "
+                  "WHERE task_name = :task_name AND start_time = :start_time AND end_time = :end_time");
+    query.bindValue(":new_task_name", newStatisticData.name());
+    query.bindValue(":new_start_time", newStatisticData.startTime().toString("yyyy-MM-dd hh:mm:ss"));
+    query.bindValue(":new_end_time", newStatisticData.endTime().toString("yyyy-MM-dd hh:mm:ss"));
+
+    query.bindValue(":task_name", statisticData.name());
+    query.bindValue(":start_time", statisticData.startTime().toString("yyyy-MM-dd hh:mm:ss"));
+    query.bindValue(":end_time", statisticData.endTime().toString("yyyy-MM-dd hh:mm:ss"));
+
+    if (!query.exec()) {
+        qDebug() << "Error: Failed to modify Statistic data. " << query.lastError();
+    } else {
+        qDebug() << "Statistic data modified successfully!";
+    }
+}
+
+QList<StatisticData> MyDataBase::findStatisticData(const QString &condition) {
+    QList<StatisticData> statisticList;
+    QSqlQuery query;
+    QString queryString = "SELECT * FROM statistic_table WHERE " + condition;
+    query.prepare(queryString);
+
+    if (!query.exec()) {
+        qDebug() << "Error: Failed to execute query. " << query.lastError();
+        return statisticList;
+    }
+
+    int rowCount = 0;
+    while (query.next()) {
+        rowCount++;
+        QString name = query.value("task_name").toString();
+        QDateTime startTime = query.value("start_time").toDateTime();
+        QDateTime endTime = query.value("end_time").toDateTime();
+
+        StatisticData statisticData(name, startTime, endTime);
+        statisticList.append(statisticData);
+    }
+    qDebug() << "Find count"<< rowCount;
+    return statisticList;
+}
+
+QList<StatisticData> MyDataBase::findStatisticDataBetween(const QDateTime &startTime, const QDateTime &endTime) {
+    QList<StatisticData> statisticList;
+    QSqlQuery query;
+    query.prepare("SELECT * FROM statistic_table WHERE start_time >= :start_time AND end_time <= :end_time");
+    query.bindValue(":start_time", startTime);
+    query.bindValue(":end_time", endTime);
+
+    if (!query.exec()) {
+        qDebug() << "Error: Failed to execute query. " << query.lastError();
+        return statisticList;
+    }
+
+    int rowCount = 0;
+    while (query.next()) {
+        rowCount++;
+        QString name = query.value("task_name").toString();
+        QDateTime start = query.value("start_time").toDateTime();
+        QDateTime end = query.value("end_time").toDateTime();
+
+        StatisticData statisticData(name, start, end);
+        statisticList.append(statisticData);
+    }
+    qDebug() << "Found count: " << rowCount;
+    return statisticList;
+}
+QList<StatisticData> MyDataBase::classifyAndCalculateTotalTime(const QList<StatisticData> &dataList) {
+    QList<StatisticData> result;
+
+    // 分类统计
+    QMap<QString, int> totalTimeMap; // 按照名称分类的总时间映射表
+    foreach (const StatisticData &data, dataList) {
+        if (!totalTimeMap.contains(data.name())) {
+            totalTimeMap.insert(data.name(), 0);
+        }
+        int duration = data.startTime().secsTo(data.endTime()); // 计算时间间隔（秒）
+        totalTimeMap[data.name()] += duration;
+    }
+
+    // 转换为结果列表
+    foreach (const QString &name, totalTimeMap.keys()) {
+        StatisticData newData(name);
+        newData.setCount(totalTimeMap.value(name) / 3600); // 将秒转换为小时
+        result.append(newData);
+    }
+
+    return result;
+}
+
+
+void MyDataBase::deleteStatisticData(const StatisticData &statisticData) {
+    QSqlQuery query;
+    query.prepare("DELETE FROM statistic_table WHERE task_name = :task_name AND start_time = :start_time AND end_time = :end_time");
+    query.bindValue(":task_name", statisticData.name());
+    query.bindValue(":start_time", statisticData.startTime().toString("yyyy-MM-dd hh:mm:ss"));
+    query.bindValue(":end_time", statisticData.endTime().toString("yyyy-MM-dd hh:mm:ss"));
+
+    if (!query.exec()) {
+        qDebug() << "Error: Failed to delete Statistic data. " << query.lastError();
+    } else {
+        qDebug() << "Statistic data deleted successfully!";
+    }
+}
+
+void MyDataBase::queryStatisticData() {
+    qDebug() << "queryStatisticData";
+    QSqlQuery sqlQuery("SELECT * FROM statistic_table");
+    while (sqlQuery.next()) {
+        int id = sqlQuery.value("id").toInt();
+        QString name = sqlQuery.value("task_name").toString();
+        QDateTime startTime = sqlQuery.value("start_time").toDateTime();
+        QDateTime endTime = sqlQuery.value("end_time").toDateTime();
+
+        StatisticData statisticData(name, startTime, endTime);
+
+        qDebug() << "ID:" << id
+                 << ", Task Name:" << statisticData.name()
+                 << ", Start Time:" << statisticData.startTime().toString("yyyy-MM-dd hh:mm:ss")
+                 << ", End Time:" << statisticData.endTime().toString("yyyy-MM-dd hh:mm:ss");
+    }
+}
+
 

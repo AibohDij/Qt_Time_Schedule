@@ -44,10 +44,12 @@ CountdownWidget::CountdownWidget(const ToDoData &toDoData, int size, QWidget *pa
     nameLabel->setAlignment(Qt::AlignCenter);
     nameLabel->setFont(QFont("Arial", size / 20, QFont::Bold));
     nameLabel->setText(m_toDoData.name());
+    nameLabel->setObjectName("nameLabel_of_count");
     layout->addWidget(nameLabel);
 
     countdownLabel = new QLabel(this);
     countdownLabel->setAlignment(Qt::AlignCenter);
+    countdownLabel->setObjectName("countdownLabel");
     countdownLabel->setFont(QFont("Arial", size / 20, QFont::Bold));
     layout->addWidget(countdownLabel, 0, Qt::AlignCenter);
 

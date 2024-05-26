@@ -1,0 +1,19 @@
+{
+	"BUILD_DIR" : "C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo",
+	"CMAKE_SOURCE_DIR" : "C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo",
+	"INCLUDE_DIR" : "C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen/include",
+	"INPUTS" : [],
+	"LOCK_FILE" : "C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/CMakeFiles/PKUToDo_autogen.dir/AutoRcc_style_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "style" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_style.cpp",
+	"RCC_EXECUTABLE" : "E:/Qt/6.5.3/mingw_64/./bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/CMakeFiles/PKUToDo_autogen.dir/AutoRcc_style_EWIEGA46WW_Used.txt",
+	"SOURCE" : "C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/style.qrc",
+	"VERBOSITY" : 0
+}

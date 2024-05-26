@@ -26,19 +26,19 @@ public:
     void clearTable(const QString &tableName);
     void dropTable(const QString &tableName);
     void resetAutoIncrement(const QString &tableName);
+
     //插入TaskData类型数据
     void insertTaskData(const TaskData &taskData);
     void deleteTaskData(int taskId);
     void deleteTaskData(const TaskData &taskData);
     void modifyTaskData(const TaskData &taskData, int taskId);
     void modifyTaskData(const TaskData &taskData, const TaskData &newTaskData);
-    //查找函数群
     void queryTaskData();
     QList<TaskData> findTaskData(const QString &condition);
     QList<TaskData> findTaskData(const QString &taskName, const QDate &startDate, const QDate &endDate, Priority priority);
     QList<TaskData> findTaskDataByDate(const QDate &date);
-    //去重
     void removeDuplicateTasks();
+
     //Todo类相关函数定义
     // 插入ToDoData
     void insertToDoData(const ToDoData &toDoData);
@@ -50,6 +50,14 @@ public:
     void modifyToDoData(const ToDoData &toDoData, int toDoId);
     void removeDuplicateToDoData();
 
+    //统计类
+    void insertStatisticData(const StatisticData &statisticData);
+    void modifyStatisticData(const StatisticData &statisticData, const StatisticData &newStatisticData);
+    QList<StatisticData> findStatisticData(const QString &condition);
+    QList<StatisticData> findStatisticDataBetween(const QDateTime &startTime, const QDateTime &endTime);
+    void deleteStatisticData(const StatisticData &statisticData);
+    void queryStatisticData();
+    QList<StatisticData> classifyAndCalculateTotalTime(const QList<StatisticData> &dataList);
 private:
     QSqlDatabase database;
 };

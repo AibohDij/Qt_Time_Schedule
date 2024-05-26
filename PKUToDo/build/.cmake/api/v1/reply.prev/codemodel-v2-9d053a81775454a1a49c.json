@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-d382b1dd0f9a6c54573d.json",
+					"jsonFile" : "directory-.-Debug-a9985653dd80c4bc7589.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "PKUToDo::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-PKUToDo-Debug-c44baac424e06cbc2fb6.json",
+					"jsonFile" : "target-PKUToDo-Debug-de37a1635441612bf4b8.json",
 					"name" : "PKUToDo",
 					"projectIndex" : 0
 				},

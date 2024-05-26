@@ -5,14 +5,14 @@
 #include "taskdata.h"
 #include "mydatabase.h"
 #include "searchwidget.h"
+//#include "chartwidget.h"
 #include "flipclockwidget.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //创建主窗口
-
+    //创建主窗口S
 
     MainWindow w;
     w.show();
@@ -22,17 +22,9 @@ int main(int argc, char *argv[])
     {
         return -1;
     }
-    // ToDoData todoData("Sample Task", 3600, MediumPriority, false);
-
-    // ToDoEditDialog dialog;
-    // dialog.setDatabase(&db);
-    // //dialog.setToDoData(todoData);
-    // dialog.exec();
-
-    // db.queryToDoData();
-
-    //创建/打开表
     db.createTable();
+
+
     TaskData task1(QDateTime(QDate::currentDate(), QTime(8, 0)), QDateTime(QDate::currentDate(), QTime(9, 0)), "Single Task 1", "Single Task 1 details", HighPriority, SingleTask, false, false);
     // RepeatedTask for today
     std::array<bool, 7> repeatDays = {false, true, false, false, false, false, false}; // Repeat on Tuesday
@@ -72,6 +64,45 @@ int main(int argc, char *argv[])
     db.closeDb();
     return a.exec();
 }
+
+// QDateTime startTime1 = QDateTime::fromString("2024-05-01T10:00:00", Qt::ISODate);
+// QDateTime endTime1 = QDateTime::fromString("2024-05-01T12:00:00", Qt::ISODate);
+// StatisticData data1("Task A", startTime1, endTime1);
+// db.insertStatisticData(data1);
+
+// QDateTime startTime2 = QDateTime::fromString("2024-05-02T13:00:00", Qt::ISODate);
+// QDateTime endTime2 = QDateTime::fromString("2024-05-02T14:00:00", Qt::ISODate);
+// StatisticData data2("Task B", startTime2, endTime2);
+// db.insertStatisticData(data2);
+
+// QDateTime startTime3 = QDateTime::fromString("2024-05-03T09:00:00", Qt::ISODate);
+// QDateTime endTime3 = QDateTime::fromString("2024-05-03T13:00:00", Qt::ISODate);
+// StatisticData data3("Task C", startTime3, endTime3);
+// db.insertStatisticData(data3);
+
+// QDateTime startTime4 = QDateTime::fromString("2024-05-04T11:00:00", Qt::ISODate);
+// QDateTime endTime4 = QDateTime::fromString("2024-05-04T19:00:00", Qt::ISODate);
+// StatisticData data4("Task D", startTime4, endTime4);
+// db.insertStatisticData(data4);
+// db.queryStatisticData();
+// //db.clearTable("statistic_table");
+// QDateTime startTime = QDateTime::fromString("2024-05-01T00:00:00", Qt::ISODate);
+// QDateTime endTime = QDateTime::fromString("2024-05-07T23:59:59", Qt::ISODate);
+
+// QList<StatisticData> data = db.findStatisticDataBetween(startTime, endTime);
+
+// BarChartWidget barChart;
+// barChart.setData(data);
+// barChart.resize(100, 100);
+// barChart.show();
+
+// PieChartWidget pieChart;
+// pieChart.setData(data);
+// pieChart.resize(200, 200);
+// pieChart.show();
+
+//创建/打开表
+
 // 数据库 查找某个date数据测试代码
 
     // // SingleTask for today

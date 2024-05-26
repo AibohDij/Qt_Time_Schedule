@@ -38,8 +38,63 @@ MainWindow::MainWindow(QWidget *parent)
     tabLayout_todo->addWidget(todayWidget);
     tabLayout_todo->addWidget(toDoView);
     tab_todo->setLayout(tabLayout_todo);
+//设置页
+    QWidget* tab_setting = ui->tab_settings;
+    QGroupBox* groupBox = new QGroupBox("主题设置", tab_setting);
+
+    QRadioButton* noneRadioButton = new QRadioButton("无", groupBox);
+    QRadioButton* blueRadioButton = new QRadioButton("蓝色", groupBox);
+    QRadioButton* blackRadioButton = new QRadioButton("黑色", groupBox);
+
+
+    QHBoxLayout *layout = new QHBoxLayout(groupBox);
+    layout->addWidget(noneRadioButton);
+    layout->addWidget(blueRadioButton);
+    layout->addWidget(blackRadioButton);
+
+
+    groupBox->setLayout(layout);
+    groupBox->setGeometry(20, 20, 200, 150);
+
+    noneRadioButton->setChecked(true);
+    onThemeChanged("noneStyle.qss");
+    // 连接槽函数
+    connect(noneRadioButton, &QRadioButton::clicked, this, [=](){ onThemeChanged("noneStyle.qss"); });
+    connect(blueRadioButton, &QRadioButton::clicked, this, [=](){ onThemeChanged("blueStyle.qss"); });
+    connect(blackRadioButton, &QRadioButton::clicked, this, [=](){ onThemeChanged("blackStyle.qss"); });
 }
 
+void MainWindow::loadTheme(const QString& themeName) {
+    if (!themeName.isEmpty()) {
+        if(themeName=="blackStyle.qss"){
+            calendar->setTheme("black");
+            for (int i = 0; i < 42; i++) {
+                calendar->datewidgets[i]->setTheme("black");
+                calendar->datewidgets[i]->update();
+            }
+            calendar->update();
+        }
+        else{
+            calendar->setTheme("blue");
+            for (int i = 0; i < 42; i++) {
+                calendar->datewidgets[i]->setTheme("blue");
+                calendar->datewidgets[i]->update();
+            }
+            calendar->update();
+        }
+        QFile file(":/styles/styles/"+themeName);
+        if (file.open(QFile::ReadOnly | QFile::Text)) {
+            QTextStream stream(&file);
+            qApp->setStyleSheet(stream.readAll());
+            file.close();
+            currentTheme = themeName;
+        }
+    }
+}
+
+void MainWindow::onThemeChanged(const QString& themeName) {
+    loadTheme(themeName);
+}
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -58,3 +113,4 @@ void MainWindow::onTabWidgetCurrentChanged(int index)
 {
 
 }
+

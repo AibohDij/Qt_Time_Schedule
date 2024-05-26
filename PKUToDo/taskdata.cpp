@@ -100,6 +100,7 @@ void TaskData::setRepeatDaysFromInt(int repeatDays) {
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
 
 ToDoData::ToDoData(const QString &name,const int& expectTime, Priority priority, bool isDone)
     : m_name(name), m_expectTime(expectTime), m_priority(priority), m_isDone(isDone) {}
@@ -136,5 +137,41 @@ void ToDoData::setIsDone(bool isDone) {
     m_isDone = isDone;
 }
 
+///////////////////////////////////////////////////////////////////////////////
 
+StatisticData::StatisticData(const QString &name, const QDateTime &startTime,
+                             const QDateTime &endTime, const int &count)
+    : m_name(name), m_startTime(startTime), m_endTime(endTime), m_count(count) {}
+
+QString StatisticData::name() const {
+    return m_name;
+}
+
+void StatisticData::setName(const QString &name) {
+    m_name = name;
+}
+
+QDateTime StatisticData::startTime() const {
+    return m_startTime;
+}
+
+void StatisticData::setStartTime(const QDateTime &startTime) {
+    m_startTime = startTime;
+}
+
+QDateTime StatisticData::endTime() const {
+    return m_endTime;
+}
+
+void StatisticData::setEndTime(const QDateTime &endTime) {
+    m_endTime = endTime;
+}
+
+int StatisticData::count() const {
+    return m_count;
+}
+
+void StatisticData::setCount(const int &count) {
+    m_count = count;
+}
 

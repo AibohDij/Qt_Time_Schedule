@@ -25,7 +25,7 @@ public:
     void AddNeighbor(STDateWidget* wid,Direction dir);
     void HaveGoodNeighbor(Direction dir);
     void DeleteGoodNgithbor(Direction dir);
-
+    void setTheme(QString s);
 
 private:
     bool isHasGoodNeighbor;
@@ -35,6 +35,7 @@ private:
     QDate currentDate;
     QList<STDateWidget*> neighbors;
     QList<Direction>directions;
+    QString theme="blue";
 private slots:
     void mouseReleaseEvent(QMouseEvent* event) ;
     void enterEvent(QEnterEvent* event);

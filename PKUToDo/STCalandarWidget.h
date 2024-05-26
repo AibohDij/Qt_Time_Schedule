@@ -21,6 +21,10 @@ public:
     ~STCalandarWidget();
     void SetCurrentDate(int year, int month, int day);
     QDate GetCurrentDate();
+    void setTheme(QString s);
+    QString theme="blue";
+
+    STDateWidget *datewidgets[42];
 private:
     void FillCalandar();
     void initLabels();
@@ -29,7 +33,7 @@ private:
     QString getFormatMonth();
 private:
     QLabel *weeklabels[7];
-    STDateWidget *datewidgets[42];
+
     QPushButton *lastYearButton;
     QPushButton *lastMonthButton;
     QPushButton *nextMonthButton;
@@ -40,6 +44,7 @@ private:
     QLineEdit *yearLineEdit;
     QSpinBox *monthSpinBox;
     QPushButton *setYearMonth;
+
 public slots:
     void HaveDateSelect(QDate date);
     void JumpLastYear();

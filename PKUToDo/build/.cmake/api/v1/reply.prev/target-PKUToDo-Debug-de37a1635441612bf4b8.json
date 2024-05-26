@@ -75,19 +75,19 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 78,
+				"line" : 80,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 60,
+				"line" : 62,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 61,
+				"line" : 63,
 				"parent" : 0
 			},
 			{
@@ -390,18 +390,19 @@
 				23,
 				25,
 				27,
-				32
+				29,
+				34
 			]
 		}
 	],
 	"dependencies" : 
 	[
 		{
-			"id" : "PKUToDo_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
-		},
-		{
 			"backtrace" : 0,
 			"id" : "PKUToDo_autogen::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "PKUToDo_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "PKUToDo::@6890427a1f51a3e7e1df",
@@ -524,7 +525,8 @@
 				23,
 				25,
 				27,
-				32
+				29,
+				34
 			]
 		},
 		{
@@ -543,8 +545,9 @@
 				24,
 				26,
 				28,
-				29,
-				30
+				30,
+				31,
+				32
 			]
 		},
 		{
@@ -555,15 +558,15 @@
 				5,
 				12,
 				15,
-				31
+				33
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				33,
-				34
+				35,
+				36
 			]
 		}
 	],
@@ -721,6 +724,17 @@
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "flipclockwidget.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "chartwidget.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "chartwidget.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

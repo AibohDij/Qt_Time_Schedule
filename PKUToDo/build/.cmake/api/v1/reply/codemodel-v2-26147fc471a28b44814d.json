@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-a9985653dd80c4bc7589.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "PKUToDo",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "PKUToDo::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-PKUToDo-Debug-6f5e76fb2f72477cdb71.json",
+					"name" : "PKUToDo",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "PKUToDo_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-PKUToDo_autogen-Debug-657e39edc720d4544a0b.json",
+					"name" : "PKUToDo_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "PKUToDo_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-PKUToDo_autogen_timestamp_deps-Debug-68f8ed52744ffb85f6c1.json",
+					"name" : "PKUToDo_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build",
+		"source" : "C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

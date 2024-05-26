@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/icons">
+    <qresource prefix="/qss_icons">
         <file>widgets_icons/add-square-outlined-interface-button.png</file>
         <file>widgets_icons/checked.png</file>
         <file>widgets_icons/checkmark-verify-interface-symbol-button.png</file>
@@ -10,7 +10,7 @@
         <file>widgets_icons/icons8-checked-64.png</file>
         <file>widgets_icons/icons8-checkmark-64.png</file>
         <file>widgets_icons/icons8-eye-50.png</file>
-        <file>widgets_icons/icons8-search-64.png</file>
+        <file alias="/icons">widgets_icons/icons8-search-64.png</file>
         <file>widgets_icons/icons8-search-80.png</file>
         <file>widgets_icons/icons8-today-26.png</file>
         <file>widgets_icons/list (1).png</file>
@@ -34,5 +34,87 @@
         <file>widgets_icons/icons8-last-page-24.png</file>
         <file>widgets_icons/icons8-next-page-24.png</file>
         <file>widgets_icons/icons8-fast-forward-round-24.png</file>
+        <file>rc/branch_closed.png</file>
+        <file>rc/branch_closed-on.png</file>
+        <file>rc/branch_open.png</file>
+        <file>rc/branch_open-on.png</file>
+        <file>rc/checkbox_checked.png</file>
+        <file>rc/checkbox_checked_disabled.png</file>
+        <file>rc/checkbox_checked_focus.png</file>
+        <file>rc/checkbox_indeterminate.png</file>
+        <file>rc/checkbox_indeterminate_disabled.png</file>
+        <file>rc/checkbox_indeterminate_focus.png</file>
+        <file>rc/checkbox_unchecked.png</file>
+        <file>rc/checkbox_unchecked_disabled.png</file>
+        <file>rc/checkbox_unchecked_focus.png</file>
+        <file>rc/close.png</file>
+        <file>rc/close-hover.png</file>
+        <file>rc/close-pressed.png</file>
+        <file>rc/down_arrow.png</file>
+        <file>rc/down_arrow_disabled.png</file>
+        <file>rc/Hmovetoolbar.png</file>
+        <file>rc/Hsepartoolbar.png</file>
+        <file>rc/left_arrow.png</file>
+        <file>rc/left_arrow_disabled.png</file>
+        <file>rc/radio_checked.png</file>
+        <file>rc/radio_checked_disabled.png</file>
+        <file>rc/radio_checked_focus.png</file>
+        <file>rc/radio_unchecked.png</file>
+        <file>rc/radio_unchecked_disabled.png</file>
+        <file>rc/radio_unchecked_focus.png</file>
+        <file>rc/right_arrow.png</file>
+        <file>rc/right_arrow_disabled.png</file>
+        <file>rc/sizegrip.png</file>
+        <file>rc/stylesheet-branch-end.png</file>
+        <file>rc/stylesheet-branch-more.png</file>
+        <file>rc/stylesheet-vline.png</file>
+        <file>rc/transparent.png</file>
+        <file>rc/undock.png</file>
+        <file>rc/up_arrow.png</file>
+        <file>rc/up_arrow_disabled.png</file>
+        <file>rc/Vmovetoolbar.png</file>
+        <file>rc/Vsepartoolbar.png</file>
+    </qresource>
+    <qresource prefix="/styles">
+        <file>styles/blueStyle.qss</file>
+        <file>styles/blackStyle.qss</file>
+        <file>styles/noneStyle.qss</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>widgets_icons/add-square-outlined-interface-button.png</file>
+        <file>widgets_icons/checked.png</file>
+        <file>widgets_icons/checkmark-verify-interface-symbol-button.png</file>
+        <file>widgets_icons/check-sign-in-a-rounded-black-square.png</file>
+        <file>widgets_icons/Close.png</file>
+        <file>widgets_icons/close-circular-button-symbol.png</file>
+        <file>widgets_icons/document.png</file>
+        <file>widgets_icons/f353fd3d-af82-4cc6-80ef-83332edd1e12.jpg</file>
+        <file>widgets_icons/haveDone.png</file>
+        <file>widgets_icons/house-outline.png</file>
+        <file>widgets_icons/icons8-calendar-50.png</file>
+        <file>widgets_icons/icons8-checked-64.png</file>
+        <file>widgets_icons/icons8-checkmark-64.png</file>
+        <file>widgets_icons/icons8-eye-50.png</file>
+        <file>widgets_icons/icons8-fast-forward-round-24.png</file>
+        <file>widgets_icons/icons8-green-67.png</file>
+        <file>widgets_icons/icons8-last-page-24.png</file>
+        <file>widgets_icons/icons8-next-page-24.png</file>
+        <file>widgets_icons/icons8-red-circle-48.png</file>
+        <file>widgets_icons/icons8-rewind-button-round-24.png</file>
+        <file>widgets_icons/icons8-search-64.png</file>
+        <file>widgets_icons/icons8-search-80.png</file>
+        <file>widgets_icons/icons8-setting-50.png</file>
+        <file>widgets_icons/icons8-today-26.png</file>
+        <file>widgets_icons/icons8-yellow-circle-48.png</file>
+        <file>widgets_icons/list (1).png</file>
+        <file>widgets_icons/running-businessman-with-suitcase.png</file>
+        <file>widgets_icons/save-button-interface-symbol-of-outlined-diskette.png</file>
+        <file>widgets_icons/Settings.png</file>
+        <file>widgets_icons/statistic-64.png</file>
+        <file>widgets_icons/themes.png</file>
+        <file>widgets_icons/ToDo.png</file>
+        <file>widgets_icons/users.png</file>
+        <file>widgets_icons/wristwatch.png</file>
+        <file>widgets_icons/icons8-enter-50.png</file>
     </qresource>
 </RCC>

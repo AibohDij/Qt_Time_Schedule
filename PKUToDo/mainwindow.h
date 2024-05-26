@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFile>
+#include <QTextStream>
+#include <QGroupBox>
+#include <QRadioButton>
 
 #include "mydatabase.h"
 #include "taskdata.h"
@@ -23,12 +27,15 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+    void loadTheme(const QString& themeName);
+    QString currentTheme = "blueStyle.qss";
 private:
     Ui::MainWindow *ui;
     STCalandarWidget *calendar;
+
 private slots:
     void HaveDateChose(QDate selectedDate);
     void onTabWidgetCurrentChanged(int index);
+    void onThemeChanged(const QString& themeName);
 };
 #endif // MAINWINDOW_H

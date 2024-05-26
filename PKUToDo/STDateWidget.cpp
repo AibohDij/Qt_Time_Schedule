@@ -4,6 +4,7 @@
 #include <QLinearGradient>
 STDateWidget::STDateWidget(QWidget* parrent /* = nullptr */) :QWidget(parrent)
 {
+
     this->setMouseTracking(true);
     isMoveIn = false;
     //qDebug() << "make";
@@ -11,6 +12,17 @@ STDateWidget::STDateWidget(QWidget* parrent /* = nullptr */) :QWidget(parrent)
     isHasGoodNeighbor = false;
     //this->setStyleSheet("background-color:red");
     //setMouseTracking(true);
+    QString styleSheet = "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, "
+                         "stop: 0 #3498db, stop: 1 #87CEFA); "  // 渐变背景
+                         "color: white; "  // 文字颜色
+                         "border: 2px solid transparent; "  // 透明边框，用于应用渐变
+                         "border-radius: 10px; "  // 圆角
+                         "padding: 5px 10px; "  // 内边距
+                         "font-size: 15px; "  // 字体大小
+                         "font-weight: bold; "  // 字体粗细
+                         "font-family: 'STFangsong', sans-serif;";  // 字体
+
+    this->setStyleSheet(styleSheet);
 }
 STDateWidget::~STDateWidget()
 {
@@ -49,6 +61,11 @@ void STDateWidget::DeleteGoodNgithbor(Direction dir)
     update();
 }
 
+void STDateWidget::setTheme(QString s)
+{
+    theme=s;
+}
+
 void STDateWidget::mouseReleaseEvent(QMouseEvent* event)
 {
     if (canSelect) {
@@ -83,8 +100,21 @@ void STDateWidget::paintEvent(QPaintEvent* event)//特效 不用动 可以调大
     QPainter painter(this);
     painter.save();
 
+    //painter.setBrush(QColor(140,217,255,150)); // 设置为白色背景
+     // 设置为白色背景
+
+    // 绘制矩形背景
+    if(theme=="blue"){
+        painter.setBrush(QColor(140,217,255,150));
+    }
+    else{
+        painter.setBrush(QColor(180, 180, 180, 120));
+    }
+    painter.drawRoundedRect(rect(),10,10);
+
+    //painter.restore();
     //Border
-    QColor borderColor(180, 180, 180, 120); // 浅灰色，透明度为150
+    QColor borderColor(180, 180, 180, 120); // 浅灰色，透明度为120
     QPen borderPen(borderColor);
     if (currentDate == QDate::currentDate()) {
         borderColor = QColor(255, 100, 100, 150); // 浅红色，透明度为150 //特别标注出今天
@@ -94,7 +124,14 @@ void STDateWidget::paintEvent(QPaintEvent* event)//特效 不用动 可以调大
     borderPen.setWidth(2);
     painter.setPen(borderPen);
 
-    painter.drawRect(rect().adjusted(1, 1, -1, -1));
+    // Calculate border radius (assuming uniform radius for all corners)
+    int borderRadius = 10; // Adjust this value as needed
+
+    // Calculate the adjusted rectangle to account for border width
+    QRect adjustedRect = rect().adjusted(1, 1, -1, -1);
+
+    // Draw rounded rectangle
+    painter.drawRoundedRect(adjustedRect, borderRadius, borderRadius);
 
     int xx = 1;
     int yy = 1;
@@ -102,10 +139,15 @@ void STDateWidget::paintEvent(QPaintEvent* event)//特效 不用动 可以调大
     int hh = this->geometry().height();
     if (isMoveIn) {
         QPen pen;
+        painter.setBrush(QColor(135,206,235, 200));
+//        painter.setBrush(QColor(180, 180, 180, 120));
+        painter.drawRoundedRect(rect(),10,10);
+
         pen.setBrush(QColor(0, 200, 250, 200));
+        //pen.setBrush(QColor(180, 180, 180, 120));
         pen.setWidth(2);
         painter.setPen(pen);
-        painter.drawRect(xx +2 ,yy +2,ww-4,hh-4);
+        painter.drawRoundedRect(xx + 2, yy + 2, ww - 4, hh - 4, 10, 10);
     }
     else {
         if (isHasGoodNeighbor)
@@ -146,35 +188,35 @@ void STDateWidget::paintEvent(QPaintEvent* event)//特效 不用动 可以调大
             {
             case STDateWidget::DIR_TOP:
                 painter.setBrush(QColor(0, 200, 250, 100));
-                painter.drawRect(rectBottom);
+                painter.drawRoundedRect(rectBottom,10,10);
                 painter.setBrush(line_left_top2bottom);
-                painter.drawRect(rectLeft);
+                painter.drawRoundedRect(rectLeft,10,10);
                 painter.setBrush(line_right_top2bottpm);
-                painter.drawRect(rectRight);
+                painter.drawRoundedRect(rectRight,10,10);
                 break;
             case STDateWidget::DIR_BOTTOM:
                 painter.setBrush(QColor(0, 200, 250, 100));
-                painter.drawRect(rectTop);
+                painter.drawRoundedRect(rectTop,10,10);
                 painter.setBrush(line_left_bottom2top);
-                painter.drawRect(rectLeft);
+                painter.drawRoundedRect(rectLeft,10,10);
                 painter.setBrush(line_right_bottom2top);
-                painter.drawRect(rectRight);
+                painter.drawRoundedRect(rectRight,10,10);
                 break;
             case STDateWidget::DIR_LEFT:
                 painter.setBrush(QColor(0, 200, 250, 100));
-                painter.drawRect(rectRight);
+                painter.drawRoundedRect(rectRight,10,10);
                 painter.setBrush(line_top_left2right);
-                painter.drawRect(rectTop);
+                painter.drawRoundedRect(rectTop,10,10);
                 painter.setBrush(line_bottom_left2right);
-                painter.drawRect(rectBottom);
+                painter.drawRoundedRect(rectBottom,10,10);
                 break;
             case STDateWidget::DIR_RIGHT:
                 painter.setBrush(QColor(0, 200, 250, 100));
-                painter.drawRect(rectLeft);
+                painter.drawRoundedRect(rectLeft,10,10);
                 painter.setBrush(line_top_right2left);
-                painter.drawRect(rectTop);
+                painter.drawRoundedRect(rectTop,10,10);
                 painter.setBrush(line_bottom_right2left);
-                painter.drawRect(rectBottom);
+                painter.drawRoundedRect(rectBottom,10,10);
                 break;
             default:
                 break;
