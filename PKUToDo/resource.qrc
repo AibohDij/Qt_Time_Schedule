@@ -116,5 +116,14 @@
         <file>widgets_icons/users.png</file>
         <file>widgets_icons/wristwatch.png</file>
         <file>widgets_icons/icons8-enter-50.png</file>
+        <file>widgets_icons/icons8-enter2-50.png</file>
+        <file>widgets_icons/background_canoe.png</file>
+    </qresource>
+    <qresource prefix="/background">
+        <file>background/background_canoe.png</file>
+        <file>background/back1.jpg</file>
+        <file>background/back2.jpg</file>
+        <file>background/back3.jpg</file>
+        <file>background/back4.jpg</file>
     </qresource>
 </RCC>

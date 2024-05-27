@@ -121,7 +121,7 @@ void STDateWidget::paintEvent(QPaintEvent* event)//特效 不用动 可以调大
         borderPen.setColor(borderColor);
         painter.setPen(borderPen);
     }
-    borderPen.setWidth(2);
+    borderPen.setWidth(3);
     painter.setPen(borderPen);
 
     // Calculate border radius (assuming uniform radius for all corners)

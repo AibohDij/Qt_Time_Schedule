@@ -6,7 +6,9 @@
 #include <QTextStream>
 #include <QGroupBox>
 #include <QRadioButton>
+#include <QDesktopServices>
 
+#include "chartwidget.h"
 #include "mydatabase.h"
 #include "taskdata.h"
 #include "task.h"
@@ -34,8 +36,10 @@ private:
     STCalandarWidget *calendar;
 
 private slots:
+
     void HaveDateChose(QDate selectedDate);
     void onTabWidgetCurrentChanged(int index);
     void onThemeChanged(const QString& themeName);
+    void on_pushButton_intro_clicked();
 };
 #endif // MAINWINDOW_H

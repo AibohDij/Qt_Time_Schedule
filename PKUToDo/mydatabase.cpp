@@ -641,7 +641,7 @@ QList<StatisticData> MyDataBase::findStatisticData(const QString &condition) {
 QList<StatisticData> MyDataBase::findStatisticDataBetween(const QDateTime &startTime, const QDateTime &endTime) {
     QList<StatisticData> statisticList;
     QSqlQuery query;
-    query.prepare("SELECT * FROM statistic_table WHERE start_time >= :start_time AND end_time <= :end_time");
+    query.prepare("SELECT * FROM statistic_table WHERE start_time >= DATETIME(:start_time) AND end_time <= DATETIME(:end_time)");
     query.bindValue(":start_time", startTime);
     query.bindValue(":end_time", endTime);
 

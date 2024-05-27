@@ -2,6 +2,7 @@ C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen/EWIEGA46WW/moc_m
   C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen/moc_predefs.h \
   C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/STCalandarWidget.h \
   C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/STDateWidget.h \
+  C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/chartwidget.h \
   C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/flipclockwidget.h \
   C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/mydatabase.h \
   C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/searchwidget.h \
@@ -9,20 +10,53 @@ C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen/EWIEGA46WW/moc_m
   C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/taskdata.h \
   C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/taskwidget.h \
   C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/timeaxis.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/QAbstractAxis \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/QAbstractBarSeries \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/QAbstractSeries \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/QBarCategoryAxis \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/QBarSeries \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/QBarSet \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/QChart \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/QChartGlobal \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/QChartView \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/QLegend \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/QPieSeries \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/QPieSlice \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/QValueAxis \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/qabstractaxis.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/qabstractbarseries.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/qabstractseries.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/qbarcategoryaxis.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/qbarseries.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/qbarset.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/qchart.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/qchartglobal.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/qchartview.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/qlegend.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/qpieseries.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/qpieslice.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/qtcharts-config.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/qtchartsexports.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCharts/qvalueaxis.h \
   E:/Qt/6.5.3/mingw_64/include/QtCore/QDate \
   E:/Qt/6.5.3/mingw_64/include/QtCore/QDateTime \
   E:/Qt/6.5.3/mingw_64/include/QtCore/QDebug \
   E:/Qt/6.5.3/mingw_64/include/QtCore/QDir \
   E:/Qt/6.5.3/mingw_64/include/QtCore/QFile \
+  E:/Qt/6.5.3/mingw_64/include/QtCore/QFileInfoList \
   E:/Qt/6.5.3/mingw_64/include/QtCore/QList \
+  E:/Qt/6.5.3/mingw_64/include/QtCore/QMargins \
   E:/Qt/6.5.3/mingw_64/include/QtCore/QObject \
+  E:/Qt/6.5.3/mingw_64/include/QtCore/QRandomGenerator \
   E:/Qt/6.5.3/mingw_64/include/QtCore/QRect \
   E:/Qt/6.5.3/mingw_64/include/QtCore/QSize \
   E:/Qt/6.5.3/mingw_64/include/QtCore/QSizeF \
   E:/Qt/6.5.3/mingw_64/include/QtCore/QStandardPaths \
   E:/Qt/6.5.3/mingw_64/include/QtCore/QString \
+  E:/Qt/6.5.3/mingw_64/include/QtCore/QStringList \
   E:/Qt/6.5.3/mingw_64/include/QtCore/QTextStream \
   E:/Qt/6.5.3/mingw_64/include/QtCore/QTimer \
+  E:/Qt/6.5.3/mingw_64/include/QtCore/QVariant \
   E:/Qt/6.5.3/mingw_64/include/QtCore/q20memory.h \
   E:/Qt/6.5.3/mingw_64/include/QtCore/q20type_traits.h \
   E:/Qt/6.5.3/mingw_64/include/QtCore/qabstractitemmodel.h \
@@ -99,6 +133,7 @@ C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen/EWIEGA46WW/moc_m
   E:/Qt/6.5.3/mingw_64/include/QtCore/qpoint.h \
   E:/Qt/6.5.3/mingw_64/include/QtCore/qpointer.h \
   E:/Qt/6.5.3/mingw_64/include/QtCore/qprocessordetection.h \
+  E:/Qt/6.5.3/mingw_64/include/QtCore/qrandom.h \
   E:/Qt/6.5.3/mingw_64/include/QtCore/qrect.h \
   E:/Qt/6.5.3/mingw_64/include/QtCore/qrefcount.h \
   E:/Qt/6.5.3/mingw_64/include/QtCore/qregularexpression.h \
@@ -150,14 +185,19 @@ C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen/EWIEGA46WW/moc_m
   E:/Qt/6.5.3/mingw_64/include/QtCore/qversiontagging.h \
   E:/Qt/6.5.3/mingw_64/include/QtCore/qxptype_traits.h \
   E:/Qt/6.5.3/mingw_64/include/QtGui/QAction \
+  E:/Qt/6.5.3/mingw_64/include/QtGui/QBrush \
   E:/Qt/6.5.3/mingw_64/include/QtGui/QContextMenuEvent \
+  E:/Qt/6.5.3/mingw_64/include/QtGui/QDesktopServices \
+  E:/Qt/6.5.3/mingw_64/include/QtGui/QFont \
   E:/Qt/6.5.3/mingw_64/include/QtGui/QPainter \
+  E:/Qt/6.5.3/mingw_64/include/QtGui/QPen \
   E:/Qt/6.5.3/mingw_64/include/QtGui/QTransform \
   E:/Qt/6.5.3/mingw_64/include/QtGui/qaction.h \
   E:/Qt/6.5.3/mingw_64/include/QtGui/qbitmap.h \
   E:/Qt/6.5.3/mingw_64/include/QtGui/qbrush.h \
   E:/Qt/6.5.3/mingw_64/include/QtGui/qcolor.h \
   E:/Qt/6.5.3/mingw_64/include/QtGui/qcursor.h \
+  E:/Qt/6.5.3/mingw_64/include/QtGui/qdesktopservices.h \
   E:/Qt/6.5.3/mingw_64/include/QtGui/qevent.h \
   E:/Qt/6.5.3/mingw_64/include/QtGui/qeventpoint.h \
   E:/Qt/6.5.3/mingw_64/include/QtGui/qfont.h \
@@ -215,6 +255,7 @@ C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen/EWIEGA46WW/moc_m
   E:/Qt/6.5.3/mingw_64/include/QtWidgets/QGraphicsScene \
   E:/Qt/6.5.3/mingw_64/include/QtWidgets/QGraphicsTextItem \
   E:/Qt/6.5.3/mingw_64/include/QtWidgets/QGraphicsView \
+  E:/Qt/6.5.3/mingw_64/include/QtWidgets/QGraphicsWidget \
   E:/Qt/6.5.3/mingw_64/include/QtWidgets/QGridLayout \
   E:/Qt/6.5.3/mingw_64/include/QtWidgets/QGroupBox \
   E:/Qt/6.5.3/mingw_64/include/QtWidgets/QHBoxLayout \
@@ -342,6 +383,8 @@ C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen/EWIEGA46WW/moc_m
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/predefined_ops.h \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ptr_traits.h \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/quoted_string.h \
+  E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/random.h \
+  E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/random.tcc \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/range_access.h \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/refwrap.h \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/shared_ptr.h \
@@ -427,6 +470,7 @@ C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen/EWIEGA46WW/moc_m
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/glue_algorithm_defs.h \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/glue_memory_defs.h \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/glue_numeric_defs.h \
+  E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/random \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ratio \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/sstream \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/stdexcept \
@@ -465,12 +509,18 @@ C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen/EWIEGA46WW/moc_m
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/gthr.h \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/messages_members.h \
+  E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/opt_random.h \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/time_members.h \
+  E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/emmintrin.h \
+  E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/mm_malloc.h \
+  E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/mmintrin.h \
+  E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/pmmintrin.h \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/stdarg.h \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/stdbool.h \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/stddef.h \
   E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/stdint.h \
+  E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/xmmintrin.h \
   E:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/_mingw.h \
   E:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/_mingw_mac.h \
   E:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/_mingw_off_t.h \

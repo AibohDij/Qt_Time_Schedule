@@ -106,7 +106,7 @@ public:
     {
         if (Task->objectName().isEmpty())
             Task->setObjectName("Task");
-        Task->resize(600, 423);
+        Task->resize(600, 466);
         Task->setMinimumSize(QSize(600, 400));
         QFont font;
         font.setPointSize(11);
@@ -146,6 +146,7 @@ public:
 
         plainTextEdit_Details = new QPlainTextEdit(Task);
         plainTextEdit_Details->setObjectName("plainTextEdit_Details");
+        plainTextEdit_Details->setMinimumSize(QSize(0, 70));
         plainTextEdit_Details->setMaximumSize(QSize(100000, 300));
         plainTextEdit_Details->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
 
@@ -167,7 +168,7 @@ public:
         sizePolicy.setVerticalStretch(1);
         sizePolicy.setHeightForWidth(groupBox_type->sizePolicy().hasHeightForWidth());
         groupBox_type->setSizePolicy(sizePolicy);
-        groupBox_type->setMinimumSize(QSize(0, 50));
+        groupBox_type->setMinimumSize(QSize(0, 80));
         QFont font2;
         font2.setFamilies({QString::fromUtf8("\344\273\277\345\256\213")});
         font2.setPointSize(11);
@@ -212,7 +213,7 @@ public:
         groupBox_priority->setObjectName("groupBox_priority");
         sizePolicy.setHeightForWidth(groupBox_priority->sizePolicy().hasHeightForWidth());
         groupBox_priority->setSizePolicy(sizePolicy);
-        groupBox_priority->setMinimumSize(QSize(0, 50));
+        groupBox_priority->setMinimumSize(QSize(0, 80));
         groupBox_priority->setFont(font2);
         horizontalLayout_6 = new QHBoxLayout(groupBox_priority);
         horizontalLayout_6->setObjectName("horizontalLayout_6");
@@ -259,7 +260,7 @@ public:
 
         stackedWidget_types = new QStackedWidget(Task);
         stackedWidget_types->setObjectName("stackedWidget_types");
-        stackedWidget_types->setMinimumSize(QSize(0, 100));
+        stackedWidget_types->setMinimumSize(QSize(0, 130));
         page_Once = new QWidget();
         page_Once->setObjectName("page_Once");
         horizontalLayout_7 = new QHBoxLayout(page_Once);
@@ -280,6 +281,7 @@ public:
 
         dateTimeEdit_start_once = new QDateTimeEdit(page_Once);
         dateTimeEdit_start_once->setObjectName("dateTimeEdit_start_once");
+        dateTimeEdit_start_once->setCalendarPopup(true);
 
         horizontalLayout_7->addWidget(dateTimeEdit_start_once);
 
@@ -295,6 +297,7 @@ public:
 
         dateTimeEdit_end_once = new QDateTimeEdit(page_Once);
         dateTimeEdit_end_once->setObjectName("dateTimeEdit_end_once");
+        dateTimeEdit_end_once->setCalendarPopup(true);
 
         horizontalLayout_7->addWidget(dateTimeEdit_end_once);
 
@@ -317,6 +320,7 @@ public:
 
         dateEdit_start_repeat = new QDateEdit(page_Repeat);
         dateEdit_start_repeat->setObjectName("dateEdit_start_repeat");
+        dateEdit_start_repeat->setCalendarPopup(true);
 
         horizontalLayout_8->addWidget(dateEdit_start_repeat);
 
@@ -328,6 +332,7 @@ public:
 
         dateEdit_end_repeat = new QDateEdit(page_Repeat);
         dateEdit_end_repeat->setObjectName("dateEdit_end_repeat");
+        dateEdit_end_repeat->setCalendarPopup(true);
 
         horizontalLayout_8->addWidget(dateEdit_end_repeat);
 
@@ -422,6 +427,7 @@ public:
 
         dateTimeEdit_deadline = new QDateTimeEdit(page_Deadline);
         dateTimeEdit_deadline->setObjectName("dateTimeEdit_deadline");
+        dateTimeEdit_deadline->setCalendarPopup(true);
 
         horizontalLayout_9->addWidget(dateTimeEdit_deadline);
 

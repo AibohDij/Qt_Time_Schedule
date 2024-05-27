@@ -5,14 +5,14 @@
 #include "taskdata.h"
 #include "mydatabase.h"
 #include "searchwidget.h"
-//#include "chartwidget.h"
+#include "chartwidget.h"
 #include "flipclockwidget.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //创建主窗口S
+
 
     MainWindow w;
     w.show();
@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
     db.createTable();
 
 
+//测试代码 实际可删
     TaskData task1(QDateTime(QDate::currentDate(), QTime(8, 0)), QDateTime(QDate::currentDate(), QTime(9, 0)), "Single Task 1", "Single Task 1 details", HighPriority, SingleTask, false, false);
     // RepeatedTask for today
     std::array<bool, 7> repeatDays = {false, true, false, false, false, false, false}; // Repeat on Tuesday
@@ -64,6 +65,36 @@ int main(int argc, char *argv[])
     db.closeDb();
     return a.exec();
 }
+
+//图表测试代码
+// db.clearTable("statistic_table");
+// QDateTime now = QDateTime::currentDateTime();
+// QDateTime startOfToday = now.date().startOfDay();
+// QDateTime endOfToday = now.date().endOfDay();
+
+// QList<StatisticData> sampleData = {
+//     {"任务 A", startOfToday.addSecs(3600), startOfToday.addSecs(9200)}, // 1小时到2小时
+//     {"任务 B", startOfToday.addSecs(5400), startOfToday.addSecs(10800)}, // 2小时到3小时
+//     {"任务 C", startOfToday.addSecs(10800), startOfToday.addSecs(17800)}, // 3小时到4小时
+//     {"任务 D", startOfToday.addSecs(14400), startOfToday.addSecs(36000)}, // 4小时到5小时
+// };
+
+// for (const StatisticData &data : sampleData) {
+//     db.insertStatisticData(data);
+// }
+
+// QWidget mainWidget;
+// QHBoxLayout *mainLayout = new QHBoxLayout(&mainWidget);
+
+// TasksBarChart *barChart = new TasksBarChart(db, startOfToday, endOfToday, "今日任务完成情况");
+// TasksPieChart *pieChart = new TasksPieChart(db, startOfToday, endOfToday, "今日任务时间分布");
+
+// mainLayout->addWidget(barChart);
+// mainLayout->addWidget(pieChart);
+
+// mainWidget.show();
+
+
 
 // QDateTime startTime1 = QDateTime::fromString("2024-05-01T10:00:00", Qt::ISODate);
 // QDateTime endTime1 = QDateTime::fromString("2024-05-01T12:00:00", Qt::ISODate);

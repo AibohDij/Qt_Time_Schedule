@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>423</height>
+    <height>466</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -85,6 +85,12 @@
        </item>
        <item row="1" column="1" colspan="3">
         <widget class="QPlainTextEdit" name="plainTextEdit_Details">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>70</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>100000</width>
@@ -126,7 +132,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>50</height>
+         <height>80</height>
         </size>
        </property>
        <property name="font">
@@ -215,7 +221,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>50</height>
+         <height>80</height>
         </size>
        </property>
        <property name="font">
@@ -303,7 +309,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>100</height>
+         <height>130</height>
         </size>
        </property>
        <property name="currentIndex">
@@ -339,7 +345,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QDateTimeEdit" name="dateTimeEdit_start_once"/>
+          <widget class="QDateTimeEdit" name="dateTimeEdit_start_once">
+           <property name="calendarPopup">
+            <bool>true</bool>
+           </property>
+          </widget>
          </item>
          <item>
           <spacer name="horizontalSpacer_6">
@@ -372,6 +382,9 @@
           <widget class="QDateTimeEdit" name="dateTimeEdit_end_once">
            <property name="displayFormat">
             <string>yyyy/MM/dd HH:mm</string>
+           </property>
+           <property name="calendarPopup">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -409,7 +422,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QDateEdit" name="dateEdit_start_repeat"/>
+            <widget class="QDateEdit" name="dateEdit_start_repeat">
+             <property name="calendarPopup">
+              <bool>true</bool>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="label_endDate">
@@ -426,7 +443,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QDateEdit" name="dateEdit_end_repeat"/>
+            <widget class="QDateEdit" name="dateEdit_end_repeat">
+             <property name="calendarPopup">
+              <bool>true</bool>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="label_start_5">
@@ -570,7 +591,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QDateTimeEdit" name="dateTimeEdit_deadline"/>
+          <widget class="QDateTimeEdit" name="dateTimeEdit_deadline">
+           <property name="calendarPopup">
+            <bool>true</bool>
+           </property>
+          </widget>
          </item>
          <item>
           <spacer name="horizontalSpacer_11">

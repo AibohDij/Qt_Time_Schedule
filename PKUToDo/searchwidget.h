@@ -13,6 +13,9 @@
 #include <QComboBox>
 #include <QTableWidget>
 #include <QTableWidgetItem>
+#include <QDir>
+#include <QFileInfoList>
+#include <QRandomGenerator>
 
 #include <QMenu>
 #include <QAction>
@@ -86,6 +89,7 @@ private:
     void setupUi();
     QString getPriorityColor(Priority priority);
     QString priorityToString(Priority priority);
+    void setPriorityColor(Priority priority);
 public slots:
     void onEdit();
     void onDelete();

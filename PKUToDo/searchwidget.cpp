@@ -184,7 +184,17 @@ void SearchResultWidget::setupUi() {
     nameLabel->setObjectName("nameLabel_search");
     // 设置最小宽度
     timeLabel->setMinimumWidth(180);
-    nameLabel->setMinimumWidth(180);
+    nameLabel->setMinimumWidth(150);
+
+    QString labelStyleSheet = "border: 1px solid black;"
+                              "border-radius: 15px;"
+                              "padding: 5px;"
+                              "font-family: 'STFangsong';"
+                              "font-weight:bold;"
+                              "color: black;"
+                              "font-size: 11pt;";
+    nameLabel->setStyleSheet(labelStyleSheet);
+    timeLabel->setStyleSheet(labelStyleSheet);
 
     layout->addWidget(nameLabel);
     layout->addWidget(timeLabel);
@@ -193,23 +203,19 @@ void SearchResultWidget::setupUi() {
     layout->addStretch(1);
     setLayout(layout);
 
-    QFile file(":/styles/styles/testStyle.qss");
-    if (file.open(QFile::ReadOnly | QFile::Text)) {
-        QTextStream stream(&file);
-        QString styleSheet = stream.readAll();
-        this->setStyleSheet(styleSheet);
-    }
+    setPriorityColor(m_taskData.priority());
 
-    // 获取背景颜色，并确保优先级高于 QSS 文件中的样式
-    QString bgColor = getPriorityColor(m_taskData.priority());
-    setStyleSheet(this->styleSheet() + QString("QLabel#timeLabel_search,QLabel#nameLabel_search { background-color: %1; }").arg(bgColor));
-    // setStyleSheet(QString("background-color: %1; "
-    //                            "border: 1px solid black; "
-    //                            "border-radius: 15px; "
-    //                            "font-family:  'STFangsong'; "
-    //                             "font-weight: bold;"
-    //                            "font-size: 11pt;").arg(bgColor));
-    //setStyleSheet("background-color:blue;");
+    // QFile file(":/styles/styles/testStyle.qss");
+    // if (file.open(QFile::ReadOnly | QFile::Text)) {
+    //     QTextStream stream(&file);
+    //     QString styleSheet = stream.readAll();
+    //     this->setStyleSheet(styleSheet);
+    // }
+
+    // // 获取背景颜色，并确保优先级高于 QSS 文件中的样式
+    // QString bgColor = getPriorityColor(m_taskData.priority());
+    // setStyleSheet(this->styleSheet() + QString("QLabel#timeLabel_search,QLabel#nameLabel_search { background-color: %1; }").arg(bgColor));
+
 
 }
 
@@ -236,6 +242,21 @@ QString SearchResultWidget::priorityToString(Priority priority) {
         return "低";
     default:
         return "未知";
+    }
+}
+
+void SearchResultWidget::setPriorityColor(Priority priority)
+{
+    switch (priority) {
+    case LowPriority:
+        setStyleSheet("background-color: #9ACD32;"); // 绿色
+        break;
+    case MediumPriority:
+        setStyleSheet("background-color: rgb(215, 185, 142);"); // 黄色
+        break;
+    case HighPriority:
+        setStyleSheet("background-color: #FF6347;"); // 红色
+        break;
     }
 }
 
@@ -436,6 +457,26 @@ void ToDoWidget::setPriorityColor(Priority priority) {
         break;
     }
 }
+QString getRandomBackground(){
+    QString imagePath = ":/background/background";
+
+    // 获取图片文件夹中所有文件
+    QDir directory(imagePath);
+    QFileInfoList fileList = directory.entryInfoList(QDir::Files);
+
+    // 如果文件列表为空，无法选择图片
+    if (fileList.isEmpty()) {
+        qDebug() << "No images found in the specified directory.";
+        return "";
+    }
+
+    // 生成一个随机索引以选择图片
+    int randomIndex = QRandomGenerator::global()->bounded(0, fileList.size());
+
+    // 选择随机图片文件
+    QString randomImagePath = fileList[randomIndex].absoluteFilePath();
+    return randomImagePath;
+}
 
 void ToDoWidget::on_startButton_clicked()
 {
@@ -445,10 +486,20 @@ void ToDoWidget::on_startButton_clicked()
         msgBox.exec();
         return;
     }
+
+
     CountdownWidget *countdownWidget = new CountdownWidget(m_data);
     countdownWidget->setWindowModality(Qt::WindowModal);
     QIcon windowIcon(":/icons/widgets_icons/wristwatch.png");
     countdownWidget->setWindowIcon(windowIcon);
+
+    QPalette PAllbackground = this->palette();
+    //QImage ImgAllbackground(":/background/background/background_canoe.png");
+    QImage ImgAllbackground(getRandomBackground());
+    QImage fitimgpic=ImgAllbackground.scaled(countdownWidget->width(),countdownWidget->height(), Qt::IgnoreAspectRatio);
+    PAllbackground.setBrush(QPalette::Window, QBrush(fitimgpic));
+    countdownWidget->setPalette(PAllbackground);
+
     countdownWidget->show();
     connect(countdownWidget,&CountdownWidget::completed,this,&ToDoWidget::setComplete);
 }

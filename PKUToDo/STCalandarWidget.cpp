@@ -180,7 +180,7 @@ void STCalandarWidget::init()
 
     setYearMonth = new QPushButton( this);
     setYearMonth->setGeometry(710, 10, 100, 30); // 增加宽度为 70 像素
-    QIcon Icon5(":/icons/widgets_icons/icons8-enter-50.png");
+    QIcon Icon5(":/icons/widgets_icons/icons8-enter2-50.png");
     setYearMonth->setIcon(Icon5);
     setYearMonth->setIconSize(QSize(24, 24));
     // 设置样式表

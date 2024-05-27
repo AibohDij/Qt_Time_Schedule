@@ -14,7 +14,12 @@ TimeAxis::TimeAxis(int windowWidth, int windowHeight, qreal stride, QDate date, 
 void TimeAxis::setupTimeAxis() {
     QString dateText = today.toString("yyyy-MM-dd");
     dateTextItem = scene->addText(dateText);
-
+    if(theme=="black"){
+        dateTextItem->setDefaultTextColor(Qt::white);
+    }
+    else{
+        dateTextItem->setDefaultTextColor(Qt::black);
+    }
     QFont font = dateTextItem->font();
     font.setPointSize(14); // Adjust size as needed
     font.setBold(true);
@@ -26,17 +31,30 @@ void TimeAxis::setupTimeAxis() {
     for (int hour = 0; hour <= 24; ++hour) {
         qreal y = hour * stride;
         QGraphicsLineItem *line = new QGraphicsLineItem(-4, y, windowWidth - 50, y);
+        if(theme=="black"){
+            QPen pen(Qt::white);
+            line->setPen(pen);
+        }
         scene->addItem(line);
         if (hour != 24) {
             QGraphicsLineItem *dashedLine = new QGraphicsLineItem(0, y + stride / 2, windowWidth - 70, y + stride / 2);
             QPen pen(Qt::black);
             pen.setStyle(Qt::DashLine);
+            if(theme=="black"){
+                pen.setColor(QColor(255,255,255));
+            }
             dashedLine->setPen(pen);
             scene->addItem(dashedLine);
         }
         QString hourText;
         hourText = QString("%1:00").arg(hour, 2, 10, QChar('0'));
         QGraphicsTextItem *textItem = scene->addText(hourText);
+        if(theme=="black"){
+            textItem->setDefaultTextColor(Qt::white);
+        }
+        else{
+            textItem->setDefaultTextColor(Qt::black);
+        }
         qreal textWidth = textItem->boundingRect().width();
         textItem->setPos(-textWidth - 5, y - 10);
     }
@@ -202,4 +220,11 @@ TimeAxisWindow::TimeAxisWindow(QDate selectedDate, QWidget *parent)
 
     // 将 TimeAxis 对象设置为窗口的中心部件
     setCentralWidget(timeAxis);
+}
+
+void TimeAxisWindow::setTheme(QString t)
+{
+    theme=t;
+    timeAxis->theme=t;
+
 }

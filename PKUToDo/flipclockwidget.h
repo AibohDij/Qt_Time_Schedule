@@ -10,6 +10,7 @@
 #include <QPushButton>
 #include <QPainter>
 #include "taskdata.h"
+#include "mydatabase.h"
 class FlipClockWidget : public QWidget {
     Q_OBJECT
 
@@ -50,6 +51,8 @@ private:
     int totalSeconds;
     int remainingSeconds;
     bool isPaused;
+    QDateTime startTime=QDateTime::currentDateTime();
+    QDateTime endTime=QDateTime::currentDateTime();
 signals:
     void completed();
 };

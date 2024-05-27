@@ -592,11 +592,10 @@ QToolBar::separator:vertical {
 QToolButton#qt_toolbar_ext_button {
     background: #58595a
 }
-
 QPushButton
 {
-    color: #eff0f1;
-    background-color: #323232;
+    color: black;
+    background-color: #b4b4b4;
     border-width: 1px;
     border-color: #76797C;
     border-style: solid;
@@ -619,15 +618,12 @@ QPushButton:disabled
     color: #454545;
 }
 
-QPushButton:focus {
-    background-color: #D1DBCB;
-    color: black;
-}
+
 
 QPushButton:pressed
 {
     color: black;
-    background-color: #D1DBCB;
+    background-color: #76797C;
     padding-top: -15px;
     padding-bottom: -17px;
 }

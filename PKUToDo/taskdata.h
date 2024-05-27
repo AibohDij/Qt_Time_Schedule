@@ -108,14 +108,14 @@ public:
     QDateTime endTime() const;
     void setEndTime(const QDateTime &endTime);
 
-    int count() const;
-    void setCount(const int &count);
+    qreal count() const;
+    void setCount(const qreal &count);
 
 private:
     QString m_name;
     QDateTime m_startTime;
     QDateTime m_endTime;
-    int m_count;
+    qreal m_count;
 };
 
 #endif // TASKDATA_H

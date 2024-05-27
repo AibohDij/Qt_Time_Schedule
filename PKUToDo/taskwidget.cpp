@@ -73,11 +73,11 @@ void TaskWidget::setupUi(const TaskData &taskData) {
 QString TaskWidget::getPriorityColor(Priority priority) {
     switch (priority) {
     case HighPriority:
-        return "rgba(255, 0, 0, 150)";
+        return "#FF6347";
     case MediumPriority:
-        return "rgba(255, 255, 0, 150)";
+        return "rgb(215, 185, 142)";
     case LowPriority:
-        return "rgba(0, 255, 0, 150)";
+        return "#9ACD32";
     default:
         return "rgba(200, 200, 255, 150)";
     }
@@ -85,6 +85,7 @@ QString TaskWidget::getPriorityColor(Priority priority) {
 
 void TaskWidget::adjustFontSizeToFit(QLabel *timeLabel, QLabel *nameLabel) {
     QFont font = timeLabel->font();
+    font.setBold(true);
     QFontMetrics metrics(font);
     int maxHeight = height() / 2;
     while (metrics.height() > maxHeight) {

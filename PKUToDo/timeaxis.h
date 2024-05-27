@@ -18,7 +18,8 @@ class TimeAxis : public QGraphicsView {
 
 public:
     TimeAxis(int windowWidth, int windowHeight, qreal stride, QDate date=QDate::currentDate(), QWidget *parent = nullptr);
-
+    QString theme="none";
+    void resetScene();
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
 public slots:
@@ -29,7 +30,7 @@ public slots:
 private:
     void setupTimeAxis();
     TaskWidget * addTaskWidget(const TaskData &taskData);
-    void resetScene();
+
 
     QGraphicsScene *scene;
     QGraphicsTextItem *dateTextItem;
@@ -46,9 +47,11 @@ class TimeAxisWindow : public QMainWindow
 
 public:
     explicit TimeAxisWindow(QDate selectedDate, QWidget *parent = nullptr);
-
-private:
+    QString theme="none";
+    void setTheme(QString t);
     TimeAxis *timeAxis;
+private:
+
 };
 
 

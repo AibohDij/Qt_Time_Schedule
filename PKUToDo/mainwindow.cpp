@@ -62,7 +62,28 @@ MainWindow::MainWindow(QWidget *parent)
     connect(noneRadioButton, &QRadioButton::clicked, this, [=](){ onThemeChanged("noneStyle.qss"); });
     connect(blueRadioButton, &QRadioButton::clicked, this, [=](){ onThemeChanged("blueStyle.qss"); });
     connect(blackRadioButton, &QRadioButton::clicked, this, [=](){ onThemeChanged("blackStyle.qss"); });
+
+    //统计页
+    // QDateTime now = QDateTime::currentDateTime();
+    // QDateTime startOfToday = now.date().startOfDay();
+    // QDateTime endOfToday = now.date().endOfDay();
+
+    // QWidget* tab_statistic = ui->tab_statistics;
+    // QHBoxLayout *mainLayout = new QHBoxLayout(tab_statistic);
+    // TasksBarChart *barChart = new TasksBarChart(db, startOfToday, endOfToday, "今日任务完成情况");
+    // TasksPieChart *pieChart = new TasksPieChart(db, startOfToday, endOfToday, "今日任务时间分布");
+    // mainLayout->addWidget(barChart);
+    // mainLayout->addWidget(pieChart);
+    QWidget* tab_statistic = ui->tab_statistics;
+    QHBoxLayout *mainLayout = new QHBoxLayout(tab_statistic);
+    DateRangeChartWidget* charts=new DateRangeChartWidget(db,this);
+    mainLayout->addWidget(charts);
+    //主页设置
+
+
+    ui->tabWidget->setCurrentIndex(0);
 }
+
 
 void MainWindow::loadTheme(const QString& themeName) {
     if (!themeName.isEmpty()) {
@@ -103,6 +124,11 @@ MainWindow::~MainWindow()
 void MainWindow::HaveDateChose(QDate selectedDate)
 {
     TimeAxisWindow *timeAxisWindow = new TimeAxisWindow(selectedDate);
+    if(currentTheme=="blackStyle.qss"){
+        timeAxisWindow->setTheme("black");
+        timeAxisWindow->timeAxis->resetScene();
+
+    }
     timeAxisWindow->show();
     QIcon icon;
     icon.addFile(QString::fromUtf8(":/icons/widgets_icons/wristwatch.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -112,5 +138,12 @@ void MainWindow::HaveDateChose(QDate selectedDate)
 void MainWindow::onTabWidgetCurrentChanged(int index)
 {
 
+}
+
+
+void MainWindow::on_pushButton_intro_clicked()
+{
+    QString websiteUrl = "https://github.com/AibohDij/Qt_Time_Schedule"; // 替换为您要打开的网址
+    QDesktopServices::openUrl(QUrl(websiteUrl));
 }
 

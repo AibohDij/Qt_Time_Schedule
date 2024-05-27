@@ -16,6 +16,7 @@ FlipClockWidget::FlipClockWidget(QWidget *parent) : QWidget(parent) {
     timeLabel = new QLabel(this);
     timeLabel->setAlignment(Qt::AlignCenter);
     timeLabel->setFont(QFont("Arial", 24, QFont::Bold));
+    timeLabel->setStyleSheet("color: red;");
     layout->addWidget(timeLabel);
 
     QDateTime currentDateTime = QDateTime::currentDateTime();
@@ -26,6 +27,7 @@ FlipClockWidget::FlipClockWidget(QWidget *parent) : QWidget(parent) {
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &FlipClockWidget::updateTime);
     timer->start(1000); // 1 second
+
 }
 
 void FlipClockWidget::updateTime() {
@@ -51,6 +53,8 @@ CountdownWidget::CountdownWidget(const ToDoData &toDoData, int size, QWidget *pa
     countdownLabel->setAlignment(Qt::AlignCenter);
     countdownLabel->setObjectName("countdownLabel");
     countdownLabel->setFont(QFont("Arial", size / 20, QFont::Bold));
+    countdownLabel->setStyleSheet("color: red;");
+
     layout->addWidget(countdownLabel, 0, Qt::AlignCenter);
 
     // Timer to update countdown every second
@@ -113,6 +117,10 @@ void CountdownWidget::completeCountdown() {
     timer->stop();
     remainingSeconds = 0;
     update();
+    endTime=QDateTime::currentDateTime();
+    StatisticData sdata(m_toDoData.name(),startTime,endTime);
+    MyDataBase db;db.openDb();
+    db.insertStatisticData(sdata);
     emit completed();
     close();
 

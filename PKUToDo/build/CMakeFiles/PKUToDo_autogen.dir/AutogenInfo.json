@@ -325,6 +325,39 @@
 		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginTargets.cmake",
 		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginTargets-relwithdebinfo.cmake",
 		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginAdditionalTargetInfo.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Charts/Qt6ChartsConfigVersion.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Charts/Qt6ChartsConfigVersionImpl.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Charts/Qt6ChartsConfig.cmake",
+		"E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Charts/Qt6ChartsDependencies.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGL/Qt6OpenGLConfigVersion.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGL/Qt6OpenGLConfigVersionImpl.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGL/Qt6OpenGLConfig.cmake",
+		"E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGL/Qt6OpenGLDependencies.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake",
+		"E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/FindVulkan.cmake",
+		"E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/FindPackageHandleStandardArgs.cmake",
+		"E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/FindPackageMessage.cmake",
+		"E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/FindPackageHandleStandardArgs.cmake",
+		"E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/FindPackageMessage.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGL/Qt6OpenGLTargets.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGL/Qt6OpenGLTargets-relwithdebinfo.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGL/Qt6OpenGLAdditionalTargetInfo.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGL/Qt6OpenGLVersionlessTargets.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfigVersion.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfigVersionImpl.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfig.cmake",
+		"E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsDependencies.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets-relwithdebinfo.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsAdditionalTargetInfo.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsVersionlessTargets.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Charts/Qt6ChartsTargets.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Charts/Qt6ChartsTargets-relwithdebinfo.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Charts/Qt6ChartsAdditionalTargetInfo.cmake",
+		"E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Charts/Qt6ChartsVersionlessTargets.cmake",
 		"E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/GNUInstallDirs.cmake",
 		"C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/resource.qrc"
 	],
@@ -346,15 +379,15 @@
 			null
 		],
 		[
-			"C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/flipclockwidget.h",
+			"C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/chartwidget.h",
 			"MU",
-			"EWIEGA46WW/moc_flipclockwidget.cpp",
+			"EWIEGA46WW/moc_chartwidget.cpp",
 			null
 		],
 		[
-			"C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/login.h",
+			"C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/flipclockwidget.h",
 			"MU",
-			"EWIEGA46WW/moc_login.cpp",
+			"EWIEGA46WW/moc_flipclockwidget.cpp",
 			null
 		],
 		[
@@ -406,9 +439,12 @@
 	"MOC_DEFINITIONS" : 
 	[
 		"MINGW_HAS_SECURE_API=1",
+		"QT_CHARTS_LIB",
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
 		"QT_NEEDS_QMAIN",
+		"QT_OPENGLWIDGETS_LIB",
+		"QT_OPENGL_LIB",
 		"QT_SQL_LIB",
 		"QT_WIDGETS_LIB",
 		"UNICODE",
@@ -432,6 +468,9 @@
 		"E:/Qt/6.5.3/mingw_64/mkspecs/win32-g++",
 		"E:/Qt/6.5.3/mingw_64/include/QtWidgets",
 		"E:/Qt/6.5.3/mingw_64/include/QtGui",
+		"E:/Qt/6.5.3/mingw_64/include/QtCharts",
+		"E:/Qt/6.5.3/mingw_64/include/QtOpenGL",
+		"E:/Qt/6.5.3/mingw_64/include/QtOpenGLWidgets",
 		"E:/Qt/6.5.3/mingw_64/include/QtSql",
 		"E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++",
 		"E:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32",
@@ -483,11 +522,15 @@
 			null
 		],
 		[
+			"C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/chartwidget.cpp",
+			"MU",
+			null
+		],
+		[
 			"C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/flipclockwidget.cpp",
 			"MU",
 			null
 		],
-		[ "C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/login.cpp", "MU", null ],
 		[ "C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/main.cpp", "MU", null ],
 		[
 			"C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/mainwindow.cpp",

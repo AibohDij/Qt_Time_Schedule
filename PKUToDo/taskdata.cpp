@@ -167,11 +167,11 @@ void StatisticData::setEndTime(const QDateTime &endTime) {
     m_endTime = endTime;
 }
 
-int StatisticData::count() const {
+qreal StatisticData::count() const {
     return m_count;
 }
 
-void StatisticData::setCount(const int &count) {
+void StatisticData::setCount(const qreal &count) {
     m_count = count;
 }
 

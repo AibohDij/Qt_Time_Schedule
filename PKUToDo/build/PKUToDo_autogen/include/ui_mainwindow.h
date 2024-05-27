@@ -13,9 +13,13 @@
 #include <QtGui/QAction>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -30,6 +34,16 @@ public:
     QVBoxLayout *verticalLayout;
     QTabWidget *tabWidget;
     QWidget *tab_home;
+    QGridLayout *gridLayout;
+    QLabel *label_name;
+    QSpacerItem *horizontalSpacer;
+    QSpacerItem *horizontalSpacer_3;
+    QSpacerItem *horizontalSpacer_4;
+    QSpacerItem *verticalSpacer_3;
+    QSpacerItem *verticalSpacer;
+    QSpacerItem *verticalSpacer_2;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *pushButton_intro;
     QWidget *tab_calendar;
     QWidget *tab_toDo;
     QWidget *tab_search;
@@ -57,6 +71,57 @@ public:
         tabWidget->setObjectName("tabWidget");
         tab_home = new QWidget();
         tab_home->setObjectName("tab_home");
+        gridLayout = new QGridLayout(tab_home);
+        gridLayout->setObjectName("gridLayout");
+        label_name = new QLabel(tab_home);
+        label_name->setObjectName("label_name");
+        QFont font;
+        font.setFamilies({QString::fromUtf8("Curlz MT")});
+        font.setPointSize(100);
+        font.setBold(true);
+        font.setItalic(true);
+        label_name->setFont(font);
+        label_name->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
+
+        gridLayout->addWidget(label_name, 1, 1, 2, 5);
+
+        horizontalSpacer = new QSpacerItem(214, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer, 1, 0, 1, 1);
+
+        horizontalSpacer_3 = new QSpacerItem(214, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_3, 3, 1, 1, 1);
+
+        horizontalSpacer_4 = new QSpacerItem(214, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_4, 3, 5, 1, 1);
+
+        verticalSpacer_3 = new QSpacerItem(20, 146, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer_3, 4, 3, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 146, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer, 0, 2, 1, 2);
+
+        verticalSpacer_2 = new QSpacerItem(20, 146, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer_2, 2, 3, 1, 1);
+
+        horizontalSpacer_2 = new QSpacerItem(214, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_2, 1, 6, 1, 1);
+
+        pushButton_intro = new QPushButton(tab_home);
+        pushButton_intro->setObjectName("pushButton_intro");
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("\346\245\267\344\275\223")});
+        font1.setPointSize(12);
+        pushButton_intro->setFont(font1);
+
+        gridLayout->addWidget(pushButton_intro, 3, 3, 1, 1);
+
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/icons/widgets_icons/house-outline.png"), QSize(), QIcon::Normal, QIcon::Off);
         tabWidget->addTab(tab_home, icon1, QString());
@@ -112,6 +177,8 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "PKUToDo1.0", nullptr));
+        label_name->setText(QCoreApplication::translate("MainWindow", "PKU ToDo", nullptr));
+        pushButton_intro->setText(QCoreApplication::translate("MainWindow", "\351\241\271\347\233\256\344\273\213\347\273\215", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_home), QCoreApplication::translate("MainWindow", "\344\270\273\351\241\265", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_calendar), QCoreApplication::translate("MainWindow", "\346\227\245\345\216\206", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_toDo), QCoreApplication::translate("MainWindow", "\344\273\243\345\212\236", nullptr));
