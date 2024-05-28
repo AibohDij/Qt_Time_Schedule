@@ -27,8 +27,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         resource.qrc
         STDateWidget.h
         STDateWidget.cpp
-        STCalandarWidget.h
-        STCalandarWidget.cpp
+        STCalendarWidget.h
+        STCalendarWidget.cpp
 
         task.h task.cpp task.ui
         taskdata.h taskdata.cpp

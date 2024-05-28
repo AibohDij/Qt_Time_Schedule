@@ -679,7 +679,7 @@ QList<StatisticData> MyDataBase::classifyAndCalculateTotalTime(const QList<Stati
     // 转换为结果列表
     foreach (const QString &name, totalTimeMap.keys()) {
         StatisticData newData(name);
-        newData.setCount(totalTimeMap.value(name) / 3600); // 将秒转换为小时
+        newData.setCount(totalTimeMap.value(name) / 3600.0); // 将秒转换为小时
         result.append(newData);
     }
 

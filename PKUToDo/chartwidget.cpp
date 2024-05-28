@@ -53,7 +53,7 @@ void TasksBarChart::loadData()
     QList<StatisticData> classifiedData = m_db.classifyAndCalculateTotalTime(data);
 
     // 计算总时长
-    int totalTime = 0;
+    qreal totalTime = 0;
     for (const StatisticData &stat : classifiedData) {
         totalTime += stat.count();
     }
@@ -64,6 +64,7 @@ void TasksBarChart::loadData()
     for (const StatisticData &stat : classifiedData) {
         categories << stat.name();
         values << stat.count();
+        qDebug()<<stat.count();
     }
 
     QBarSet *set = new QBarSet("任务时长");
@@ -71,11 +72,14 @@ void TasksBarChart::loadData()
         *set << value;
         qDebug() << "value" << value;
     }
-
     // 设置柱状图颜色
-    set->setColor(Qt::blue);
+    //set->setColor(Qt::blue);
+
+    QAbstractSeries *series=m_chart->series().at(0);
+    m_chart->removeSeries(series);
 
     m_series->append(set);
+    m_chart->addSeries(m_series);
 
     QBarCategoryAxis *axisX = qobject_cast<QBarCategoryAxis*>(m_chart->axes(Qt::Horizontal).at(0));
     if (axisX) {
@@ -103,6 +107,7 @@ void TasksBarChart::loadData()
         label->setPos(xPos, yPos);
         m_chart->scene()->addItem(label);
     }
+
     // update();
 }
 
@@ -189,7 +194,7 @@ void TasksPieChart::loadData()
     QList<StatisticData> classifiedData = m_db.classifyAndCalculateTotalTime(data);
 
     // 计算总时长
-    int totalTime = 0;
+    qreal totalTime = 0;
     for (const StatisticData &stat : classifiedData) {
         totalTime += stat.count();
     }
@@ -209,8 +214,8 @@ DateRangeChartWidget::DateRangeChartWidget(MyDataBase &db, QWidget *parent)
     QDateTime now = QDateTime::currentDateTime();
     QDateTime startOfToday = now.date().startOfDay();
     QDateTime endOfToday = now.date().endOfDay();
-    m_barChart = new TasksBarChart(db,startOfToday,endOfToday,"代办统计",this);
-    m_pieChart = new TasksPieChart(db,startOfToday,endOfToday,"代办统计",this);
+    m_barChart = new TasksBarChart(db,startOfToday,endOfToday,"待办统计",this);
+    m_pieChart = new TasksPieChart(db,startOfToday,endOfToday,"待办统计",this);
 
     m_dateEditStart = new QDateTimeEdit(this);
     m_dateEditStart->setDisplayFormat("yyyy-MM-dd");
