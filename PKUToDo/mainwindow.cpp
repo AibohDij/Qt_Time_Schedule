@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-#include "STCalandarWidget.h"
+#include "STCalendarWidget.h"
 #include "STDateWidget.h"
 #include <qboxlayout.h>
 MainWindow::MainWindow(QWidget *parent)
@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
 //设置日历页
     QWidget* tab_Calendar=ui->tab_calendar;
     QHBoxLayout *tabLayout_Calendar = new QHBoxLayout(tab_Calendar);
-    calendar = new STCalandarWidget(this);
+    calendar = new STCalendarWidget(this);
         // 连接信号槽
     connect(calendar, SIGNAL(DateSelectSignal(QDate)), this, SLOT(HaveDateChose(QDate)));
     tabLayout_Calendar->addStretch();

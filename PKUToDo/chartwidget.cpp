@@ -97,12 +97,14 @@ void TasksBarChart::loadData()
         QBarSet *barSet = m_series->barSets().at(0);
         qreal value = barSet->at(i);
         qreal percentage = (value / totalTime) * 100.0;
+        QString formattedPercentage = QString::number(percentage, 'f', 2);
+        qreal roundedPercentage = formattedPercentage.toDouble();
 
-        QString labelText = QString::number(value) + "小时 (" + QString::number(percentage, 'f', 2) + "%)";
+        QString labelText =QString::number(value, 'f', 2) + "小时 \n(" + QString::number(roundedPercentage, 'f', 2) + "%)";
         QGraphicsSimpleTextItem *label = new QGraphicsSimpleTextItem(labelText);
 
         qreal xPos = m_chart->plotArea().left() + (i + 0.5) * (m_chart->plotArea().width() / set->count()) - 10;
-        qreal yPos = m_chart->plotArea().bottom() - (value / ((QValueAxis*)m_chart->axes(Qt::Vertical).at(0))->max()) * m_chart->plotArea().height() - 20;
+        qreal yPos = m_chart->plotArea().bottom() - (value / ((QValueAxis*)m_chart->axes(Qt::Vertical).at(0))->max()) * m_chart->plotArea().height() - 30;
 
         label->setPos(xPos, yPos);
         m_chart->scene()->addItem(label);
@@ -176,6 +178,7 @@ void TasksPieChart::setupChart(const QString &title)
     m_chart->setTitle(title);
     m_chart->setTheme(QChart::ChartThemeLight);
     m_chart->legend()->setVisible(true);
+    m_chart->legend()->setFont(QFont("Arial", 7));
 
     QChartView *chartView = new QChartView(m_chart);
     chartView->setRenderHint(QPainter::Antialiasing);
@@ -200,10 +203,14 @@ void TasksPieChart::loadData()
     }
 
     for (const StatisticData &stat : classifiedData) {
+        qreal countValue = stat.count();
+        QString formattedCount = QString::number(countValue, 'f', 2);
         qreal percentage = (stat.count() / (qreal)totalTime) * 100.0;
-        QPieSlice *slice = m_series->append(stat.name() + QString(" (%1h, %2%)").arg(stat.count()).arg(percentage, 0, 'f', 2), stat.count());
+        QString formattedPercentage = QString::number(percentage, 'f', 2);
+        qreal roundedPercentage = formattedPercentage.toDouble();
+        QPieSlice *slice = m_series->append(stat.name() + QString(" (%1h %2%)").arg(formattedCount).arg(roundedPercentage, 0, 'f', 2), stat.count());
         slice->setLabelVisible();
-        slice->setLabelFont(QFont("Arial", 8));
+        slice->setLabelFont(QFont("Arial", 6));
     }
 }
 
@@ -225,10 +232,16 @@ DateRangeChartWidget::DateRangeChartWidget(MyDataBase &db, QWidget *parent)
     m_dateEditEnd->setCalendarPopup(true);
     m_dateEditStart->setMinimumWidth(100);
     m_dateEditEnd->setMinimumWidth(100);
+    m_dateEditStart->setObjectName("statistic_startEdit");
+    m_dateEditEnd->setObjectName("statistic_endEdit");
 
     acceptButton = new QPushButton("确认",this);
     QLabel* l1=new QLabel("起始日期",this);
+    l1->setObjectName("statistic_startLabel");
+
     QLabel* l2=new QLabel("终止日期",this);
+    l2->setObjectName("statistic_endLabel");
+
     QVBoxLayout *mainlayout = new QVBoxLayout(this);
     QHBoxLayout *buttonlayout = new QHBoxLayout(this);
     QHBoxLayout *chartslayout = new QHBoxLayout(this);

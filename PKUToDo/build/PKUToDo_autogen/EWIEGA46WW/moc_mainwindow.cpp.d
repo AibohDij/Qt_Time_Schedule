@@ -1,15 +1,15 @@
-C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/mainwindow.h \
-  C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen/moc_predefs.h \
-  C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/STCalandarWidget.h \
-  C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/STDateWidget.h \
-  C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/chartwidget.h \
-  C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/flipclockwidget.h \
-  C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/mydatabase.h \
-  C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/searchwidget.h \
-  C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/task.h \
-  C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/taskdata.h \
-  C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/taskwidget.h \
-  C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/timeaxis.h \
+C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/build/PKUToDo_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/mainwindow.h \
+  C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/build/PKUToDo_autogen/moc_predefs.h \
+  C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/STCalendarWidget.h \
+  C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/STDateWidget.h \
+  C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/chartwidget.h \
+  C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/flipclockwidget.h \
+  C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/mydatabase.h \
+  C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/searchwidget.h \
+  C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/task.h \
+  C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/taskdata.h \
+  C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/taskwidget.h \
+  C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/timeaxis.h \
   E:/Qt/6.5.3/mingw_64/include/QtCharts/QAbstractAxis \
   E:/Qt/6.5.3/mingw_64/include/QtCharts/QAbstractBarSeries \
   E:/Qt/6.5.3/mingw_64/include/QtCharts/QAbstractSeries \

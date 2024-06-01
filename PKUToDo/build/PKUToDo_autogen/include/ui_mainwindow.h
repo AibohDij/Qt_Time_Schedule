@@ -181,7 +181,7 @@ public:
         pushButton_intro->setText(QCoreApplication::translate("MainWindow", "\351\241\271\347\233\256\344\273\213\347\273\215", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_home), QCoreApplication::translate("MainWindow", "\344\270\273\351\241\265", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_calendar), QCoreApplication::translate("MainWindow", "\346\227\245\345\216\206", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_toDo), QCoreApplication::translate("MainWindow", "\344\273\243\345\212\236", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_toDo), QCoreApplication::translate("MainWindow", "\345\276\205\345\212\236", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_search), QCoreApplication::translate("MainWindow", "\346\220\234\347\264\242", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_statistics), QCoreApplication::translate("MainWindow", "\346\225\260\346\215\256\347\273\237\350\256\241", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_settings), QCoreApplication::translate("MainWindow", "\350\256\276\347\275\256", nullptr));

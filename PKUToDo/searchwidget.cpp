@@ -77,7 +77,8 @@ void SearchWidget::onSearchButtonClicked() {
     QString taskName = taskNameEdit->text();
     QDate startDate = startDateEdit->date();
     QDate endDate = endDateEdit->date();
-    int priority = priorityComboBox->currentData().toInt();
+    int priority = priorityComboBox->currentIndex();
+    qDebug()<<"priority"<<priority<<' '<<priorityComboBox->currentIndex();
 
     MyDataBase db;
     db.openDb();
@@ -93,7 +94,7 @@ void SearchWidget::onSearchButtonClicked() {
         condition += QString(" AND DATE(end_time) <= '%1'").arg(endDate.toString("yyyy-MM-dd"));
     }
     if (priorityComboBox->currentIndex() != 0) {
-        condition += QString(" AND priority = %1").arg(priority);
+        condition += QString(" AND priority = %1-1").arg(priority);
     }
     qDebug()<<condition;
     QList<TaskData> tasks = db.findTaskData(condition);
@@ -373,7 +374,7 @@ void TodayTasksWidget::displayTodayTasks()
     QDate today = QDate::currentDate();
     QList<TaskData> todayTasks = db.findTaskDataByDate(today);
     QList<TaskData> sortedTasks = todayTasks; // 复制一份 tasks 列表以免修改原始数据
-    std::sort(sortedTasks.begin(), sortedTasks.end(), compareStartTime);
+    std::sort(sortedTasks.begin(), sortedTasks.end(), comparePriority);
     tasksTable->clear();
     tasksTable->setRowCount(todayTasks.size());
     for (int row = 0; row < todayTasks.size(); ++row) {
@@ -386,7 +387,7 @@ void TodayTasksWidget::displayTodayTasks()
 
 ToDoWidget::ToDoWidget(const ToDoData &toDoData, QWidget *parent) :
     QWidget(parent),m_data(toDoData) {
-    nameLabel = new QLabel(QString("代办： %1").arg(toDoData.name()), this);
+    nameLabel = new QLabel(QString("待办： %1").arg(toDoData.name()), this);
     QString labelStyleSheet = "border: 1px solid black;"
                               "border-radius: 15px;"
                               "padding: 5px;"
@@ -482,7 +483,7 @@ void ToDoWidget::on_startButton_clicked()
 {
     if(m_data.isDone()){
         QMessageBox msgBox;
-        msgBox.setInformativeText("该代办已完成，请右键删除或恢复为未完成");
+        msgBox.setInformativeText("该待办已完成，请右键删除或恢复为未完成");
         msgBox.exec();
         return;
     }
@@ -518,7 +519,7 @@ void ToDoWidget::onDelete()
 {
     qDebug()<<"ToDo delete is called";
     QMessageBox msgBox;
-    msgBox.setInformativeText("确定要删除这个代办吗?");
+    msgBox.setInformativeText("确定要删除这个待办吗?");
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     msgBox.setButtonText(QMessageBox::Yes, "确认");
     msgBox.setButtonText(QMessageBox::No, "取消");
@@ -533,7 +534,7 @@ void ToDoWidget::onDelete()
         db.deleteToDoData(m_data);
         emit editFinished();
     } else {
-        qDebug() << "取消删除代办" << m_data.name();
+        qDebug() << "取消删除待办" << m_data.name();
     }
 }
 
@@ -564,12 +565,12 @@ void ToDoWidget::setComplete()
 ToDoView::ToDoView(QWidget *parent) :
     QWidget(parent), m_db(nullptr) {
 
-    QLabel *titleLabel = new QLabel("代办集", this);
+    QLabel *titleLabel = new QLabel("待办集", this);
     titleLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     titleLabel->setStyleSheet("font-size: 16px; font-weight: bold;");
 
 
-    addButton = new QPushButton("添加代办", this);
+    addButton = new QPushButton("添加待办", this);
     tableWidget = new QTableWidget(this);
 
     addButton->setMaximumWidth(200);
@@ -582,6 +583,7 @@ ToDoView::ToDoView(QWidget *parent) :
     setLayout(layout);
 
     connect(addButton, &QPushButton::clicked, this, &ToDoView::onAddButtonClicked);
+    refreshToDoList();
 }
 
 void ToDoView::setDatabase(MyDataBase *db) {

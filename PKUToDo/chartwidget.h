@@ -2,14 +2,14 @@
 #define CHARTWIDGET_H
 
 #include <QWidget>
-#include <QtCharts/QChartView>
-#include <QtCharts/QChart>
-#include <QtCharts/QBarSeries>
-#include <QtCharts/QBarSet>
-#include <QtCharts/QBarCategoryAxis>
-#include <QtCharts/QValueAxis>
-#include <QtCharts/QPieSeries>
-#include <QtCharts/QPieSlice>
+#include <QChartView>
+#include <QChart>
+#include <QBarSeries>
+#include <QBarSet>
+#include <QBarCategoryAxis>
+#include <QValueAxis>
+#include <QPieSeries>
+#include <QPieSlice>
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QLabel>

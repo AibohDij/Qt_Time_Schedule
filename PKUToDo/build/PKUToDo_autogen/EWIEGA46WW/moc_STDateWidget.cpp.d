@@ -1,5 +1,5 @@
-C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen/EWIEGA46WW/moc_STDateWidget.cpp: C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/STDateWidget.h \
-  C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen/moc_predefs.h \
+C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/build/PKUToDo_autogen/EWIEGA46WW/moc_STDateWidget.cpp: C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/STDateWidget.h \
+  C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/build/PKUToDo_autogen/moc_predefs.h \
   E:/Qt/6.5.3/mingw_64/include/QtCore/QDate \
   E:/Qt/6.5.3/mingw_64/include/QtCore/q20memory.h \
   E:/Qt/6.5.3/mingw_64/include/QtCore/q20type_traits.h \

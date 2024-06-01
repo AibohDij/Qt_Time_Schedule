@@ -181,7 +181,7 @@
          <normaloff>:/icons/widgets_icons/checked.png</normaloff>:/icons/widgets_icons/checked.png</iconset>
        </attribute>
        <attribute name="title">
-        <string>代办</string>
+        <string>待办</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="tab_search">

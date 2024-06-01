@@ -49,7 +49,7 @@ QPushButton:pressed {
 
 
 
-QLabel#DateLabel_calender,#TaskNameLabel, #StartDateLabel, #EndDateLabel, #PriorityLabel {
+QLabel#statistic_startLabel,#statistic_endLabel,#DateLabel_calender,#TaskNameLabel, #StartDateLabel, #EndDateLabel, #PriorityLabel {
     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                  stop: 0 #3498db, stop: 1 #87CEFA); /* 渐变淡蓝色背景 */
     color: white; /* 白色文字 */
@@ -60,7 +60,7 @@ QLabel#DateLabel_calender,#TaskNameLabel, #StartDateLabel, #EndDateLabel, #Prior
     font-family:  "STFangsong", sans-serif;
 }
 
-#YearLineEdit, #MonthSpinBox,#TaskNameEdit, #StartDateEdit, #EndDateEdit, #PriorityComboBox {
+#statistic_startEdit,#statistic_endEdit,#YearLineEdit, #MonthSpinBox,#TaskNameEdit, #StartDateEdit, #EndDateEdit, #PriorityComboBox {
     background-color: #81c7d4;/*#91B493;*/
     color: white; /* 文字颜色为黑色 */
     border: 2px solid #87CEFA; /* 边框样式 */

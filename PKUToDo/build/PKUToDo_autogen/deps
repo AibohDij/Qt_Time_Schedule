@@ -1,34 +1,34 @@
 PKUToDo_autogen/timestamp: \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/CMakeLists.txt \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/STCalandarWidget.cpp \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/STCalandarWidget.h \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/STDateWidget.cpp \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/STDateWidget.h \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/.qtc/package-manager/auto-setup.cmake \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/CMakeFiles/3.27.7/CMakeCXXCompiler.cmake \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/CMakeFiles/3.27.7/CMakeRCCompiler.cmake \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/CMakeFiles/3.27.7/CMakeSystem.cmake \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/build/PKUToDo_autogen/moc_predefs.h \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/chartwidget.cpp \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/chartwidget.h \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/flipclockwidget.cpp \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/flipclockwidget.h \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/main.cpp \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/mainwindow.cpp \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/mainwindow.h \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/mydatabase.cpp \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/mydatabase.h \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/resource.qrc \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/searchwidget.cpp \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/searchwidget.h \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/task.cpp \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/task.h \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/taskdata.cpp \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/taskdata.h \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/taskwidget.cpp \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/taskwidget.h \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/timeaxis.cpp \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/timeaxis.h \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/CMakeLists.txt \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/STCalendarWidget.cpp \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/STCalendarWidget.h \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/STDateWidget.cpp \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/STDateWidget.h \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/build/.qtc/package-manager/auto-setup.cmake \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/build/CMakeFiles/3.27.7/CMakeCXXCompiler.cmake \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/build/CMakeFiles/3.27.7/CMakeRCCompiler.cmake \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/build/CMakeFiles/3.27.7/CMakeSystem.cmake \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/build/PKUToDo_autogen/moc_predefs.h \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/chartwidget.cpp \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/chartwidget.h \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/flipclockwidget.cpp \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/flipclockwidget.h \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/main.cpp \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/mainwindow.cpp \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/mainwindow.h \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/mydatabase.cpp \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/mydatabase.h \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/resource.qrc \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/searchwidget.cpp \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/searchwidget.h \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/task.cpp \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/task.h \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/taskdata.cpp \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/taskdata.h \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/taskwidget.cpp \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/taskwidget.h \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/timeaxis.cpp \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/timeaxis.h \
 	E:/Qt/6.5.3/mingw_64/include/QtCharts/QAbstractAxis \
 	E:/Qt/6.5.3/mingw_64/include/QtCharts/QAbstractBarSeries \
 	E:/Qt/6.5.3/mingw_64/include/QtCharts/QAbstractSeries \
@@ -546,23 +546,81 @@ PKUToDo_autogen/timestamp: \
 	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6ZlibPrivate/Qt6ZlibPrivateConfigVersionImpl.cmake \
 	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6ZlibPrivate/Qt6ZlibPrivateTargets.cmake \
 	E:/Qt/6.5.3/mingw_64/lib/cmake/Qt6ZlibPrivate/Qt6ZlibPrivateVersionlessTargets.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeCXXCompiler.cmake.in \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeCompilerIdDetection.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeDetermineCXXCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeDetermineCompileFeatures.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeDetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeDetermineRCCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeDetermineSystem.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindBinUtils.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeNinjaFindMake.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeParseImplicitIncludeInfo.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeParseImplicitLinkInfo.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeParseLibraryArchitecture.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeRCCompiler.cmake.in \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeRCInformation.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeSystem.cmake.in \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeTestCXXCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeTestCompilerCommon.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeTestRCCompiler.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CheckCXXCompilerFlag.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CheckCXXSourceCompiles.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CheckIncludeFileCXX.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CheckLibraryExists.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/ADSP-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/ARMCC-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/ARMClang-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/AppleClang-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/Borland-DetermineCompiler.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/Clang-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/Clang-DetermineCompilerInternal.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/Cray-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/Embarcadero-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/Fujitsu-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/GHS-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/GNU-FindBinUtils.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/GNU.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/HP-CXX-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/IAR-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/Intel-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/MSVC-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/NVHPC-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/NVIDIA-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/PGI-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/PathScale-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/SCO-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/TI-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/Tasking-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/Watcom-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/XL-CXX-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/FindPackageHandleStandardArgs.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/FindPackageMessage.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/FindThreads.cmake \
@@ -571,6 +629,8 @@ PKUToDo_autogen/timestamp: \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Internal/CheckCompilerFlag.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Internal/CheckFlagCommonConfig.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Internal/CheckSourceCompiles.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Internal/FeatureTesting.cmake \
+	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Platform/Windows-Determine-CXX.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake \
 	E:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake \
@@ -815,6 +875,6 @@ PKUToDo_autogen/timestamp: \
 	E:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
 	E:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
 	E:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wctype.h \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/mainwindow.ui \
-	C:/Users/ushop/Desktop/PKUToDo1.0/PKUToDo/task.ui \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/mainwindow.ui \
+	C:/Users/ushop/Desktop/Qt_Time_Schedule-main/Qt_Time_Schedule-main/PKUToDo/task.ui \
 	E:/Qt/Tools/CMake_64/bin/cmake.exe

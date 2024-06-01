@@ -12,7 +12,7 @@
 #include "mydatabase.h"
 #include "taskdata.h"
 #include "task.h"
-#include "STCalandarWidget.h"
+#include "STCalendarWidget.h"
 #include "STDateWidget.h"
 #include "timeaxis.h"
 #include "searchwidget.h"
@@ -33,7 +33,7 @@ public:
     QString currentTheme = "blueStyle.qss";
 private:
     Ui::MainWindow *ui;
-    STCalandarWidget *calendar;
+    STCalendarWidget *calendar;
 
 private slots:
 

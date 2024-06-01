@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = E:\Qt\Tools\CMake_64\bin\cmake.exe --regenerate-during-build -SC:\Users\ushop\Desktop\PKUToDo1.0\PKUToDo -BC:\Users\ushop\Desktop\PKUToDo1.0\PKUToDo\build
+  command = E:\Qt\Tools\CMake_64\bin\cmake.exe --regenerate-during-build -SC:\Users\ushop\Desktop\Qt_Time_Schedule-main\Qt_Time_Schedule-main\PKUToDo -BC:\Users\ushop\Desktop\Qt_Time_Schedule-main\Qt_Time_Schedule-main\PKUToDo\build
   description = Re-running CMake...
   generator = 1
 
