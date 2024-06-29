@@ -1,0 +1,8 @@
+C:/Users/ushop/Desktop/Qt_Time_Schedule-AibohDij/Qt_Time_Schedule-AibohDij/PKUToDo/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Debug/CMakeFiles/PKUToDo.dir
+C:/Users/ushop/Desktop/Qt_Time_Schedule-AibohDij/Qt_Time_Schedule-AibohDij/PKUToDo/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Debug/CMakeFiles/edit_cache.dir
+C:/Users/ushop/Desktop/Qt_Time_Schedule-AibohDij/Qt_Time_Schedule-AibohDij/PKUToDo/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/ushop/Desktop/Qt_Time_Schedule-AibohDij/Qt_Time_Schedule-AibohDij/PKUToDo/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Debug/CMakeFiles/list_install_components.dir
+C:/Users/ushop/Desktop/Qt_Time_Schedule-AibohDij/Qt_Time_Schedule-AibohDij/PKUToDo/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Debug/CMakeFiles/install.dir
+C:/Users/ushop/Desktop/Qt_Time_Schedule-AibohDij/Qt_Time_Schedule-AibohDij/PKUToDo/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Debug/CMakeFiles/install/local.dir
+C:/Users/ushop/Desktop/Qt_Time_Schedule-AibohDij/Qt_Time_Schedule-AibohDij/PKUToDo/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Debug/CMakeFiles/PKUToDo_autogen_timestamp_deps.dir
+C:/Users/ushop/Desktop/Qt_Time_Schedule-AibohDij/Qt_Time_Schedule-AibohDij/PKUToDo/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Debug/CMakeFiles/PKUToDo_autogen.dir

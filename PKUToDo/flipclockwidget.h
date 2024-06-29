@@ -9,6 +9,8 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QPainter>
+#include <QMediaPlayer>
+#include <QAudioOutput>
 #include "taskdata.h"
 #include "mydatabase.h"
 class FlipClockWidget : public QWidget {
@@ -16,6 +18,7 @@ class FlipClockWidget : public QWidget {
 
 public:
     explicit FlipClockWidget(QWidget *parent = nullptr);
+
 
 public slots:
     void updateTime();
@@ -53,6 +56,8 @@ private:
     bool isPaused;
     QDateTime startTime=QDateTime::currentDateTime();
     QDateTime endTime=QDateTime::currentDateTime();
+    QMediaPlayer *player;
+    QAudioOutput *audioOutput;
 signals:
     void completed();
 };

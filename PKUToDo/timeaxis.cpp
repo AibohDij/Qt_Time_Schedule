@@ -228,3 +228,124 @@ void TimeAxisWindow::setTheme(QString t)
     timeAxis->theme=t;
 
 }
+
+
+WeeklyTimeAxis::WeeklyTimeAxis(int windowWidth, int windowHeight, qreal stride, QDate startDate, QWidget *parent)
+    : QGraphicsView(parent), windowWidth(windowWidth), windowHeight(windowHeight), stride(stride), startDate(startDate) {
+    scene = new QGraphicsScene(this);
+    setScene(scene);
+    setFixedSize(windowWidth, windowHeight);
+    updateWeekDates();
+    setupWeekAxis();
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+}
+
+void WeeklyTimeAxis::drawWeekTasks() {
+    scene->clear(); // 清空场景重新绘制
+    setupWeekAxis(); // 设置一周的时间轴
+
+    MyDataBase db;
+    db.openDb();
+    QList<TaskData> weekTasks = db.findTaskData("",startDate, endDate,None);
+
+    for (const TaskData &task : weekTasks) {
+        addTaskWidget(task);
+    }
+}
+
+void WeeklyTimeAxis::setupWeekAxis()
+{
+    QString dateText = QString("%1 ~ %2").arg(startDate.toString("yyyy-MM-dd")).arg(endDate.toString("yyyy-MM-dd"));
+    QGraphicsTextItem *dateTextItem = scene->addText(dateText);
+    dateTextItem->setFont(QFont("Arial", 14, QFont::Bold));
+    dateTextItem->setPos((windowWidth - dateTextItem->boundingRect().width()) / 2 +10, -dateTextItem->boundingRect().height() - 20);
+
+    // 绘制一周的时间轴
+    for (int day = 0; day <= 6; ++day) {
+        QDate currentDate = startDate.addDays(day);
+        QString dayText = currentDate.toString("ddd MM/dd");
+        qreal x = day * (windowWidth - 50) / 7.0 + 40;
+        QGraphicsTextItem *textItem = scene->addText(dayText);
+        textItem->setPos(x - textItem->boundingRect().width() / 2 + 40, -textItem->boundingRect().height() + 15);
+
+        QGraphicsLineItem *verticalLine = new QGraphicsLineItem(x, 40, x, windowHeight*1.2);
+        scene->addItem(verticalLine);
+        for (int hour = 0; hour <= 24; ++hour) {
+            qreal y = hour * stride + 40;
+            QGraphicsLineItem *line = new QGraphicsLineItem(x, y, x + (windowWidth - 50) / 7.0, y);
+            scene->addItem(line);
+
+            if (hour != 24) {
+                QGraphicsLineItem *dashedLine = new QGraphicsLineItem(x, y + stride / 2, x + (windowWidth - 70) / 7.0, y + stride / 2);
+                QPen pen(Qt::DashLine);
+                dashedLine->setPen(pen);
+                scene->addItem(dashedLine);
+            }
+        }
+    }
+    for (int hour = 0; hour <= 24; ++hour) {
+        qreal x = 0;
+        qreal y = hour * stride + 40;
+        QString hourText = QString("%1:00").arg(hour, 2, 10, QChar('0'));
+        QGraphicsTextItem *hourTextItem = scene->addText(hourText);
+        hourTextItem->setPos(x + 5, y - 10);
+    }
+}
+
+void WeeklyTimeAxis::addTaskWidget(const TaskData &taskData) {
+    qreal startY = taskData.startTime().time().hour() * stride +
+                   taskData.startTime().time().minute() * stride / 60;
+    qreal endY = taskData.endTime().time().hour() * stride +
+                 taskData.endTime().time().minute() * stride / 60;
+    qreal height = endY - startY;
+
+    qreal x = (taskData.startTime().date().dayOfWeek() - 1) * (windowWidth - 50) / 7.0;
+
+    TaskWidget *taskWidget = new TaskWidget(taskData, height);
+    connect(taskWidget, &TaskWidget::editFinished, this, [this]() { drawWeekTasks(); }); // 更新任务后重新绘制
+    QGraphicsProxyWidget *proxy = scene->addWidget(taskWidget);
+    proxy->setPos(x, startY);
+}
+
+void WeeklyTimeAxis::updateWeekDates() {
+    endDate = startDate.addDays(6);
+}
+
+void WeeklyTimeAxis::contextMenuEvent(QContextMenuEvent *event) {
+    QGraphicsItem *item = itemAt(event->pos());
+    if (item) {
+        QGraphicsProxyWidget *proxyWidget = dynamic_cast<QGraphicsProxyWidget*>(item);
+        if (proxyWidget) {
+            QWidget *widget = proxyWidget->widget();
+            TaskWidget *taskWidget = dynamic_cast<TaskWidget*>(widget);
+            if (taskWidget) {
+                taskWidget->contextMenuEvent(event);
+                return;
+            }
+        }
+    }
+
+    QMenu contextMenu(this);
+    QAction *addNewAction = new QAction("New Task", this);
+    connect(addNewAction, &QAction::triggered, this, [this]() { qDebug() << "Add new task"; });
+    contextMenu.addAction(addNewAction);
+    contextMenu.exec(event->globalPos());
+}
+
+WeeklyTimeAxisWindow::WeeklyTimeAxisWindow(QDate selectedDate, QWidget *parent)
+    : QMainWindow(parent) {
+    int windowWidth = 800;
+    int windowHeight = 600;
+    qreal stride = 30.0;
+
+    weeklyTimeAxis = new WeeklyTimeAxis(windowWidth, windowHeight, stride, selectedDate);
+    setCentralWidget(weeklyTimeAxis);
+
+    // 绘制一周的任务
+    weeklyTimeAxis->drawWeekTasks();
+}
+
+// void WeeklyTimeAxisWindow::setTheme(QString t) {
+//     theme = t;
+//     weeklyTimeAxis->setTheme(t);
+// }

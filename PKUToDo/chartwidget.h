@@ -15,6 +15,7 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QDateTimeEdit>
+#include <QComboBox>
 #include "mydatabase.h"
 
 
@@ -27,11 +28,11 @@ class TasksBarChart : public QWidget
 
 public:
     explicit TasksBarChart(MyDataBase &db, const QDateTime &startTime, const QDateTime &endTime, const QString &title, QWidget *parent = nullptr);
-    void updateData(const QDateTime &startTime, const QDateTime &endTime);
+    void updateData(const QDateTime &startTime, const QDateTime &endTime, const int &index);
 private:
     void setupChart();
     void setupAxis();
-    void loadData();
+    void loadData(const int &index);
     void adjustYAxisRange();
 
 
@@ -43,6 +44,7 @@ private:
     QString m_title;
     int m_totalTime=1;
     int m_maxValue=1;
+    qreal totalTime=0;
 };
 
 class TasksPieChart : public QWidget
@@ -51,16 +53,18 @@ class TasksPieChart : public QWidget
 
 public:
     explicit TasksPieChart(MyDataBase &db, const QDateTime &startTime, const QDateTime &endTime, const QString &title, QWidget *parent = nullptr);
-    void updateData(const QDateTime &startTime, const QDateTime &endTime);
+    void updateData(const QDateTime &startTime, const QDateTime &endTime, const int &index);
 private:
     void setupChart(const QString &title);
-    void loadData();
+    void loadData(const int &index);
 
     MyDataBase &m_db;
     QChart *m_chart;
     QPieSeries *m_series;
     QDateTime m_startTime;
     QDateTime m_endTime;
+public slots:
+    void onPieSeriesClicked(QPieSlice* slice);
 };
 
 
@@ -78,6 +82,8 @@ private:
     TasksPieChart *m_pieChart;
     QDateTimeEdit *m_dateEditStart;
     QDateTimeEdit *m_dateEditEnd;
+    QComboBox* datatypeComboBox;
+    qreal totalTime=0;
 
 private slots:
     void updateCharts();

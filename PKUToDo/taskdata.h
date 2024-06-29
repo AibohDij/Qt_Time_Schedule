@@ -111,6 +111,8 @@ public:
     qreal count() const;
     void setCount(const qreal &count);
 
+    qreal day_count(const QDate &date) const;
+
 private:
     QString m_name;
     QDateTime m_startTime;

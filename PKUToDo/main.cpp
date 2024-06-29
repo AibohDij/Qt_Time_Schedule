@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
 
+
     MainWindow w;
     w.show();
 
@@ -36,9 +37,8 @@ void demo(){
     QDateTime now = QDateTime::currentDateTime();
     QDateTime startOfToday = now.date().startOfDay();
     //QDateTime endOfToday = now.date().endOfDay();
-
     QList<StatisticData> sampleData = {
-        {"任务 A", startOfToday.addSecs(3600), startOfToday.addSecs(9200)}, // 1小时到2小时
+        {"任务 A", startOfToday.addDays(-1).addSecs(3600), startOfToday.addDays(-1).addSecs(9200)}, // 1小时到2小时
         {"任务 B", startOfToday.addSecs(5400), startOfToday.addSecs(10800)}, // 2小时到3小时
         {"任务 C", startOfToday.addSecs(10800), startOfToday.addSecs(17800)}, // 3小时到4小时
         {"任务 D", startOfToday.addSecs(14400), startOfToday.addSecs(36000)}, // 4小时到5小时

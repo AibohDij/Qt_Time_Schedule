@@ -7,11 +7,14 @@
 #include <QGraphicsProxyWidget>
 #include <QGraphicsTextItem>
 #include <QDebug>
+#include<QList>
 #include <QMainWindow>
 #include "taskwidget.h"
 #include "taskdata.h"
 #include "task.h"
 #include "mydatabase.h"
+#include <QMenu>
+#include <QAction>
 
 class TimeAxis : public QGraphicsView {
     Q_OBJECT
@@ -41,6 +44,8 @@ private:
 };
 
 
+
+
 class TimeAxisWindow : public QMainWindow
 {
     Q_OBJECT
@@ -51,6 +56,45 @@ public:
     void setTheme(QString t);
     TimeAxis *timeAxis;
 private:
+
+};
+
+
+class WeeklyTimeAxis : public QGraphicsView {
+    Q_OBJECT
+
+public:
+    explicit WeeklyTimeAxis(int windowWidth, int windowHeight, qreal stride, QDate startDate, QWidget *parent = nullptr);
+
+public slots:
+    void drawWeekTasks(); // 绘制一周的任务
+
+private:
+    QGraphicsScene *scene;
+    int windowWidth;
+    int windowHeight;
+    qreal stride;
+    QDate startDate;
+    QDate endDate;
+
+    void setupWeekAxis(); // 设置一周的时间轴
+    void addTaskWidget(const TaskData &taskData); // 添加任务小部件
+    void updateWeekDates(); // 更新一周的日期范围
+protected:
+    void contextMenuEvent(QContextMenuEvent *event) override;
+};
+
+class WeeklyTimeAxisWindow : public QMainWindow {
+    Q_OBJECT
+
+public:
+    explicit WeeklyTimeAxisWindow(QDate selectedDate, QWidget *parent = nullptr);
+
+    //void setTheme(QString t);
+
+private:
+    WeeklyTimeAxis *weeklyTimeAxis;
+    QString theme = "none";
 
 };
 

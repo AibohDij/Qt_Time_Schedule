@@ -1,0 +1,22 @@
+# ninja log v5
+732	2887	7413454088189789	CMakeFiles/PKUToDo.dir/STCalendarWidget.cpp.obj	e4d69d04183203fd
+12	289	7413510652785225	PKUToDo_autogen/timestamp	d6aee888e948840a
+294	2516	7413510674978329	CMakeFiles/PKUToDo.dir/main.cpp.obj	3fefe11e925e2ffd
+12	289	7413510652785225	PKUToDo_autogen/mocs_compilation.cpp	d6aee888e948840a
+12	289	7413510652785225	C:/Users/ushop/Desktop/Qt_Time_Schedule-AibohDij/Qt_Time_Schedule-AibohDij/PKUToDo/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Debug/PKUToDo_autogen/timestamp	d6aee888e948840a
+12	289	7413510652785225	C:/Users/ushop/Desktop/Qt_Time_Schedule-AibohDij/Qt_Time_Schedule-AibohDij/PKUToDo/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Debug/PKUToDo_autogen/mocs_compilation.cpp	d6aee888e948840a
+676	1238	7413449740941169	PKUToDo_autogen/EWIEGA46WW/qrc_resource.cpp	3f79df8270a79c82
+676	1238	7413449740941169	C:/Users/ushop/Desktop/Qt_Time_Schedule-AibohDij/Qt_Time_Schedule-AibohDij/PKUToDo/build/Desktop_Qt_6_5_3_MSVC2019_64bit-Debug/PKUToDo_autogen/EWIEGA46WW/qrc_resource.cpp	3f79df8270a79c82
+751	2515	7413454084484552	CMakeFiles/PKUToDo.dir/taskdata.cpp.obj	8b1b56c05f7a9a7e
+717	2854	7413454087860057	CMakeFiles/PKUToDo.dir/STDateWidget.cpp.obj	414fea84443e4053
+774	3484	7413454094171967	CMakeFiles/PKUToDo.dir/mydatabase.cpp.obj	71a566e438b659e6
+784	3644	7413454095778926	CMakeFiles/PKUToDo.dir/taskwidget.cpp.obj	7a1976a3ace1e511
+295	2385	7413467786436403	CMakeFiles/PKUToDo.dir/chartwidget.cpp.obj	47ec6ff596929c0c
+298	2422	7413507689131821	CMakeFiles/PKUToDo.dir/timeaxis.cpp.obj	b4d7d6214b92faf
+313	2543	7413510675270124	CMakeFiles/PKUToDo.dir/task.cpp.obj	f155a6ff277b2093
+303	2549	7413510675330349	CMakeFiles/PKUToDo.dir/mainwindow.cpp.obj	b98bbaa53c22405f
+583	3025	7413465195196784	CMakeFiles/PKUToDo.dir/searchwidget.cpp.obj	b0350364c337dee0
+571	3188	7413495121692961	CMakeFiles/PKUToDo.dir/PKUToDo_autogen/mocs_compilation.cpp.obj	a22794ec4aa40b10
+826	6603	7413454125069993	CMakeFiles/PKUToDo.dir/PKUToDo_autogen/EWIEGA46WW/qrc_resource.cpp.obj	eb40a213bf2d763f
+649	2389	7413458947573537	CMakeFiles/PKUToDo.dir/flipclockwidget.cpp.obj	9ad1219cb379e1b7
+2549	2850	7413510677899594	PKUToDo.exe	411dd760d0bf75b6
