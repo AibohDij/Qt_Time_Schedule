@@ -663,6 +663,33 @@ QList<StatisticData> MyDataBase::findStatisticDataBetween(const QDateTime &start
     qDebug() << "Found count: " << rowCount;
     return statisticList;
 }
+
+QList<StatisticData> MyDataBase::findStatisticDataOverlap(const QDateTime &startTime, const QDateTime &endTime) {
+    QList<StatisticData> statisticList;
+    QSqlQuery query;
+    query.prepare("SELECT * FROM statistic_table WHERE start_time <= DATETIME(:end_time) OR end_time >= DATETIME(:start_time)");
+    query.bindValue(":start_time", startTime);
+    query.bindValue(":end_time", endTime);
+
+    if (!query.exec()) {
+        qDebug() << "Error: Failed to execute query. " << query.lastError();
+        return statisticList;
+    }
+
+    int rowCount = 0;
+    while (query.next()) {
+        rowCount++;
+        QString name = query.value("task_name").toString();
+        QDateTime start = query.value("start_time").toDateTime();
+        QDateTime end = query.value("end_time").toDateTime();
+
+        StatisticData statisticData(name, start, end);
+        statisticList.append(statisticData);
+    }
+    qDebug() << "Found count: " << rowCount;
+    return statisticList;
+}
+
 QList<StatisticData> MyDataBase::classifyAndCalculateTotalTime(const QList<StatisticData> &dataList) {
     QList<StatisticData> result;
 
@@ -686,6 +713,31 @@ QList<StatisticData> MyDataBase::classifyAndCalculateTotalTime(const QList<Stati
     return result;
 }
 
+QList<StatisticData> MyDataBase::classifyAndCalculateTotalTimePerDay(const QList<StatisticData> &dataList, const QDateTime &startTime, const QDateTime &endTime)
+{
+    QList<StatisticData> result;
+
+    // 分类统计
+    QMap<QString, int> totalTimeMap; // 按照名称分类的总时间映射表
+    foreach (const StatisticData &data, dataList) {
+        for(QDate day=startTime.date();day<=endTime.date();day=day.addDays(1))
+        {
+            QString date = day.toString("MM-dd");
+            if(!totalTimeMap.contains(date))
+                totalTimeMap.insert(date, 0);
+            totalTimeMap[date]+=data.day_count(day);
+        }
+    }
+
+    // 转换为结果列表
+    foreach (const QString &name, totalTimeMap.keys()) {
+        StatisticData newData(name);
+        newData.setCount(totalTimeMap.value(name) / 3600.0); // 将秒转换为小时
+        result.append(newData);
+    }
+
+    return result;
+}
 
 void MyDataBase::deleteStatisticData(const StatisticData &statisticData) {
     QSqlQuery query;

@@ -55,9 +55,11 @@ public:
     void modifyStatisticData(const StatisticData &statisticData, const StatisticData &newStatisticData);
     QList<StatisticData> findStatisticData(const QString &condition);
     QList<StatisticData> findStatisticDataBetween(const QDateTime &startTime, const QDateTime &endTime);
+    QList<StatisticData> findStatisticDataOverlap(const QDateTime &startTime, const QDateTime &endTime);
     void deleteStatisticData(const StatisticData &statisticData);
     void queryStatisticData();
     QList<StatisticData> classifyAndCalculateTotalTime(const QList<StatisticData> &dataList);
+    QList<StatisticData> classifyAndCalculateTotalTimePerDay(const QList<StatisticData> &dataList, const QDateTime &startTime, const QDateTime &endTime);
 private:
     QSqlDatabase database;
 };

@@ -19,7 +19,6 @@ MainWindow::MainWindow(QWidget *parent)
     tabLayout_Calendar->addWidget(calendar);
     tabLayout_Calendar->addStretch();
     tab_Calendar->setLayout(tabLayout_Calendar);
-
 //设置搜索页
     QWidget* tab_search = ui->tab_search;
     QHBoxLayout* tabLayout_search = new QHBoxLayout(tab_search); // 创建水平布局
@@ -27,13 +26,14 @@ MainWindow::MainWindow(QWidget *parent)
     tabLayout_search->addWidget(searchWidget);
     tabLayout_search->setAlignment(Qt::AlignTop); // 设置布局顶部对齐
     tab_search->setLayout(tabLayout_search); // 将布局设置到 tab_search 页面中
-// 设置代办页
+// 设置待办页
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::onTabWidgetCurrentChanged);
     QWidget* tab_todo = ui->tab_toDo;
     QHBoxLayout* tabLayout_todo = new QHBoxLayout(tab_todo);
     TodayTasksWidget* todayWidget = new TodayTasksWidget(this);
     ToDoView* toDoView = new ToDoView(this);
-    MyDataBase db;db.openDb();
+    MyDataBase db;
+    db.openDb();
     toDoView->setDatabase(&db);
     tabLayout_todo->addWidget(todayWidget);
     tabLayout_todo->addWidget(toDoView);

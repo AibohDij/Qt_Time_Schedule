@@ -9,7 +9,7 @@ TasksBarChart::TasksBarChart(MyDataBase &db, const QDateTime &startTime, const Q
 {
     setupChart();
     setupAxis();
-    loadData();
+    loadData(0);
     adjustYAxisRange(); // 调整Y轴范围
 }
 
@@ -47,39 +47,72 @@ void TasksBarChart::setupAxis()
     m_series->attachAxis(axisY);
 }
 
-void TasksBarChart::loadData()
+void TasksBarChart::loadData(const int &index)
 {
-    QList<StatisticData> data = m_db.findStatisticDataBetween(m_startTime, m_endTime);
-    QList<StatisticData> classifiedData = m_db.classifyAndCalculateTotalTime(data);
-
-    // 计算总时长
     qreal totalTime = 0;
-    for (const StatisticData &stat : classifiedData) {
-        totalTime += stat.count();
-    }
-
     QStringList categories;
     QList<qreal> values;
-
-    for (const StatisticData &stat : classifiedData) {
-        categories << stat.name();
-        values << stat.count();
-        qDebug()<<stat.count();
-    }
-
     QBarSet *set = new QBarSet("任务时长");
-    for (const qreal &value : values) {
-        *set << value;
-        qDebug() << "value" << value;
+    if(index==0)
+    {
+        QList<StatisticData> data = m_db.findStatisticDataBetween(m_startTime, m_endTime);
+        QList<StatisticData> classifiedData = m_db.classifyAndCalculateTotalTime(data);
+
+        // 计算总时长
+
+        for (const StatisticData &stat : classifiedData) {
+            totalTime += stat.count();
+        }
+
+        for (const StatisticData &stat : classifiedData) {
+            categories << stat.name();
+            values << stat.count();
+            qDebug()<<stat.count();
+        }
+
+        for (const qreal &value : values) {
+            *set << value;
+            qDebug() << "value" << value;
+        }
+        // 设置柱状图颜色
+        //set->setColor(Qt::blue);
+
+        QAbstractSeries *series=m_chart->series().at(0);
+        m_chart->removeSeries(series);
+
+        m_series->append(set);
+        m_chart->addSeries(m_series);
     }
-    // 设置柱状图颜色
-    //set->setColor(Qt::blue);
+    else
+    {
+        QList<StatisticData> data = m_db.findStatisticDataOverlap(m_startTime, m_endTime);
+        QList<StatisticData> classifiedData = m_db.classifyAndCalculateTotalTimePerDay(data, m_startTime, m_endTime);
 
-    QAbstractSeries *series=m_chart->series().at(0);
-    m_chart->removeSeries(series);
+        // 计算总时长
 
-    m_series->append(set);
-    m_chart->addSeries(m_series);
+        for (const StatisticData &stat : classifiedData) {
+            totalTime += stat.count();
+        }
+
+        for (const StatisticData &stat : classifiedData) {
+            categories << stat.name();
+            values << stat.count();
+            qDebug()<<stat.count();
+        }
+
+        for (const qreal &value : values) {
+            *set << value;
+            qDebug() << "value" << value;
+        }
+        // 设置柱状图颜色
+        //set->setColor(Qt::blue);
+
+        QAbstractSeries *series=m_chart->series().at(0);
+        m_chart->removeSeries(series);
+
+        m_series->append(set);
+        m_chart->addSeries(m_series);
+    }
 
     QBarCategoryAxis *axisX = qobject_cast<QBarCategoryAxis*>(m_chart->axes(Qt::Horizontal).at(0));
     if (axisX) {
@@ -130,10 +163,10 @@ void TasksBarChart::adjustYAxisRange()
     }
 
     // 设置Y轴的范围
-    axisY->setRange(0, maxValue +1); // 增加一些空间以便显示标签
+    axisY->setRange(0, maxValue);
 }
 
-void TasksBarChart::updateData(const QDateTime &startTime, const QDateTime &endTime)
+void TasksBarChart::updateData(const QDateTime &startTime, const QDateTime &endTime, const int &index)
 {
     MyDataBase db;db.openDb();
     m_startTime=startTime;
@@ -147,7 +180,7 @@ void TasksBarChart::updateData(const QDateTime &startTime, const QDateTime &endT
         delete axis;
     }
     setupAxis();
-    loadData();
+    loadData(index);
     adjustYAxisRange();
 }
 
@@ -158,16 +191,16 @@ TasksPieChart::TasksPieChart(MyDataBase &db, const QDateTime &startTime, const Q
     : QWidget(parent), m_db(db), m_startTime(startTime), m_endTime(endTime)
 {
     setupChart(title);
-    loadData();
+    loadData(0);
 }
 
-void TasksPieChart::updateData(const QDateTime &startTime, const QDateTime &endTime)
+void TasksPieChart::updateData(const QDateTime &startTime, const QDateTime &endTime, const int &index)
 {
     MyDataBase db;db.openDb();
     m_startTime=startTime;
     m_endTime=endTime;
     m_series->clear();
-    loadData();
+    loadData(index);
 }
 
 void TasksPieChart::setupChart(const QString &title)
@@ -191,26 +224,50 @@ void TasksPieChart::setupChart(const QString &title)
     setMinimumSize(400, 300);
 }
 
-void TasksPieChart::loadData()
+void TasksPieChart::loadData(const int &index)
 {
-    QList<StatisticData> data = m_db.findStatisticDataBetween(m_startTime, m_endTime);
-    QList<StatisticData> classifiedData = m_db.classifyAndCalculateTotalTime(data);
+    if(index==0)
+    {
+        QList<StatisticData> data = m_db.findStatisticDataBetween(m_startTime, m_endTime);
+        QList<StatisticData> classifiedData = m_db.classifyAndCalculateTotalTime(data);
 
-    // 计算总时长
-    qreal totalTime = 0;
-    for (const StatisticData &stat : classifiedData) {
-        totalTime += stat.count();
+        // 计算总时长
+        qreal totalTime = 0;
+        for (const StatisticData &stat : classifiedData) {
+            totalTime += stat.count();
+        }
+
+        for (const StatisticData &stat : classifiedData) {
+            qreal countValue = stat.count();
+            QString formattedCount = QString::number(countValue, 'f', 2);
+            qreal percentage = (stat.count() / (qreal)totalTime) * 100.0;
+            QString formattedPercentage = QString::number(percentage, 'f', 2);
+            qreal roundedPercentage = formattedPercentage.toDouble();
+            QPieSlice *slice = m_series->append(stat.name() + QString(" (%1h %2%)").arg(formattedCount).arg(roundedPercentage, 0, 'f', 2), stat.count());
+            slice->setLabelVisible();
+            slice->setLabelFont(QFont("Arial", 6));
+        }
     }
+    else
+    {
+        QList<StatisticData> data = m_db.findStatisticDataOverlap(m_startTime, m_endTime);
+        QList<StatisticData> classifiedData = m_db.classifyAndCalculateTotalTimePerDay(data, m_startTime, m_endTime);
+        // 计算总时长
+        qreal totalTime = 0;
+        for (const StatisticData &stat : classifiedData) {
+            totalTime += stat.count();
+        }
 
-    for (const StatisticData &stat : classifiedData) {
-        qreal countValue = stat.count();
-        QString formattedCount = QString::number(countValue, 'f', 2);
-        qreal percentage = (stat.count() / (qreal)totalTime) * 100.0;
-        QString formattedPercentage = QString::number(percentage, 'f', 2);
-        qreal roundedPercentage = formattedPercentage.toDouble();
-        QPieSlice *slice = m_series->append(stat.name() + QString(" (%1h %2%)").arg(formattedCount).arg(roundedPercentage, 0, 'f', 2), stat.count());
-        slice->setLabelVisible();
-        slice->setLabelFont(QFont("Arial", 6));
+        for (const StatisticData &stat : classifiedData) {
+            qreal countValue = stat.count();
+            QString formattedCount = QString::number(countValue, 'f', 2);
+            qreal percentage = (stat.count() / (qreal)totalTime) * 100.0;
+            QString formattedPercentage = QString::number(percentage, 'f', 2);
+            qreal roundedPercentage = formattedPercentage.toDouble();
+            QPieSlice *slice = m_series->append(stat.name() + QString(" (%1h %2%)").arg(formattedCount).arg(roundedPercentage, 0, 'f', 2), stat.count());
+            slice->setLabelVisible();
+            slice->setLabelFont(QFont("Arial", 6));
+        }
     }
 }
 
@@ -242,6 +299,13 @@ DateRangeChartWidget::DateRangeChartWidget(MyDataBase &db, QWidget *parent)
     QLabel* l2=new QLabel("终止日期",this);
     l2->setObjectName("statistic_endLabel");
 
+    QLabel* l3=new QLabel("统计类型",this);
+    l3->setObjectName("statistic_datatype");
+    datatypeComboBox=new QComboBox(this);
+    datatypeComboBox->setObjectName("datatype_combo_box");
+    datatypeComboBox->addItem("项目占比");
+    datatypeComboBox->addItem("时间占比");
+
     QVBoxLayout *mainlayout = new QVBoxLayout(this);
     QHBoxLayout *buttonlayout = new QHBoxLayout(this);
     QHBoxLayout *chartslayout = new QHBoxLayout(this);
@@ -251,6 +315,9 @@ DateRangeChartWidget::DateRangeChartWidget(MyDataBase &db, QWidget *parent)
     buttonlayout->addStretch();
     buttonlayout->addWidget(l2);
     buttonlayout->addWidget(m_dateEditEnd);
+    buttonlayout->addStretch();
+    buttonlayout->addWidget(l3);
+    buttonlayout->addWidget(datatypeComboBox);
     buttonlayout->addStretch();
     buttonlayout->addWidget(acceptButton);
     buttonlayout->addStretch();
@@ -280,6 +347,8 @@ void DateRangeChartWidget::updateCharts()
         QMessageBox::warning(this, "错误", "任务的开始时间必须早于结束时间！");
         return;
     }
-    m_barChart->updateData(start, end);
-    m_pieChart->updateData(start, end);
+    int index=datatypeComboBox->currentIndex();
+
+    m_barChart->updateData(start, end, index);
+    m_pieChart->updateData(start, end, index);
 }

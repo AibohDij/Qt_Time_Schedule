@@ -4,6 +4,9 @@
 #include <QFont>
 #include <QPainter>
 #include <QPaintEvent>
+#include <QUrl>
+#include <QAudioDevice>
+#include <QMessageBox>
 
 FlipClockWidget::FlipClockWidget(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -73,6 +76,20 @@ CountdownWidget::CountdownWidget(const ToDoData &toDoData, int size, QWidget *pa
 
     setFixedSize(size, size + 80);
     setCountdownTime();
+
+    QAudioDevice defaultDevice;
+    audioOutput=new QAudioOutput();
+    audioOutput->setDevice(defaultDevice);
+    audioOutput->setVolume(100);
+    player=new QMediaPlayer();
+    player->setAudioOutput(audioOutput);
+    if(!audioOutput->isMuted())
+        qDebug()<<"Audio Device Not Muted.";
+    QString music_path="qrc:/music/music/river_flows_in_you.mp3";
+    player->setSource(music_path);
+    player->setLoops(QMediaPlayer::Infinite);
+    player->play();
+    qDebug()<<"Music Played.";
 }
 
 void CountdownWidget::setCountdownTime() {
@@ -105,9 +122,13 @@ void CountdownWidget::pauseCountdown() {
     if (isPaused) {
         pauseButton->setText("暂停");
         timer->start(1000); // Resume the timer
+        player->play();
+        qDebug()<<"Countdown Resumed.";
     } else {
         pauseButton->setText("继续");
         timer->stop(); // Stop the timer
+        player->pause();
+        qDebug()<<"Countdown Paused.";
     }
     isPaused = !isPaused;
 }
@@ -115,12 +136,22 @@ void CountdownWidget::pauseCountdown() {
 void CountdownWidget::completeCountdown() {
     countdownLabel->setText("00:00:00");
     timer->stop();
+    player->stop();
     remainingSeconds = 0;
     update();
     endTime=QDateTime::currentDateTime();
     StatisticData sdata(m_toDoData.name(),startTime,endTime);
-    MyDataBase db;db.openDb();
-    db.insertStatisticData(sdata);
+    MyDataBase db;
+    qDebug()<<"ToDo finished before scheduled time.";
+    int msgboxRet=QMessageBox::information(this, "提示", "待办已提前结束，是否保存？", "是", "否", 0, 1);
+    switch(msgboxRet){
+    case 0:
+        db.openDb();
+        db.insertStatisticData(sdata);
+        break;
+    case 1:
+        break;
+    }
     emit completed();
     close();
 
