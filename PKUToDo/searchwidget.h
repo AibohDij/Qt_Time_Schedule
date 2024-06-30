@@ -16,6 +16,8 @@
 #include <QDir>
 #include <QFileInfoList>
 #include <QRandomGenerator>
+#include <QTimer>
+#include <QSystemTrayIcon>
 
 #include <QMenu>
 #include <QAction>
@@ -57,6 +59,7 @@ class TodayTasksWidget : public QWidget
     Q_OBJECT
 public:
     explicit TodayTasksWidget(QWidget *parent = nullptr);
+    QSystemTrayIcon *trayIcon;
 
 private slots:
     void TodayUpdate();
@@ -67,7 +70,8 @@ private:
 
     void setupUi();
     void displayTodayTasks();
-
+public slots:
+    //void presentNotice(const QString &name);
 signals:
 
 };
@@ -81,6 +85,9 @@ class SearchResultWidget : public QWidget {
 
 public:
     SearchResultWidget(const TaskData &taskData, QWidget *parent = nullptr);
+    void setAlarm();
+    TaskData taskData();
+    QTimer *timer;
 protected:
     void contextMenuEvent(QContextMenuEvent *event) override;
 private:
@@ -141,6 +148,5 @@ private:
 
     void populateTable();
 };
-
 
 #endif // SEARCHWIDGET_H

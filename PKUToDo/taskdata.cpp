@@ -175,3 +175,25 @@ void StatisticData::setCount(const qreal &count) {
     m_count = count;
 }
 
+qreal StatisticData::day_count(const QDate &date) const
+{
+    if(date==m_startTime.date()&&date==m_endTime.date())
+    {
+        qreal startSec = m_startTime.time().hour()*3600+m_startTime.time().minute()*60+m_startTime.time().second();
+        qreal endSec = m_endTime.time().hour()*3600+m_endTime.time().minute()*60+m_endTime.time().second();
+        return (endSec-startSec);
+    }
+    if(date==m_startTime.date())
+    {
+        qreal startSec = m_startTime.time().hour()*3600+m_startTime.time().minute()*60+m_startTime.time().second();
+        qreal endSec = 86400;
+        return (endSec-startSec);
+    }
+    if(date==m_endTime.date())
+    {
+        qreal startSec = 0;
+        qreal endSec = m_endTime.time().hour()*3600+m_endTime.time().minute()*60+m_endTime.time().second();
+        return (endSec-startSec);
+    }
+    return 0;
+}

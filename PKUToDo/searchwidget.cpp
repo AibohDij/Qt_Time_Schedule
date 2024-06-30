@@ -133,8 +133,69 @@ void SearchWidget::displayResults(const QList<TaskData> &tasks) {
 }
 
 SearchResultWidget::SearchResultWidget(const TaskData &taskData, QWidget *parent)
-    : QWidget(parent), m_taskData(taskData) {
+    : QWidget(parent), m_taskData(taskData),timer(nullptr) {
     setupUi();
+}
+
+TaskData SearchResultWidget::taskData()
+{
+    return m_taskData;
+}
+
+void SearchResultWidget::setAlarm()
+{
+    if (m_taskData.type() == SingleTask)
+    {
+        QDateTime currentTime = QDateTime::currentDateTime();
+        qreal sec = currentTime.secsTo(m_taskData.startTime()) - 60;
+        if(sec>=0)
+        {
+            timer = new QTimer();
+            timer->start(sec * 1000);
+            timer->setSingleShot(true);
+        }
+    }
+    else if(m_taskData.type() == RepeatedTask)
+    {
+        QDateTime currentTime = QDateTime::currentDateTime();
+        QDateTime finalStartTime;
+        finalStartTime.setDate(m_taskData.endTime().date());
+        finalStartTime.setTime(m_taskData.startTime().time());
+        qreal sec = currentTime.secsTo(finalStartTime);
+        if(sec>=0)
+        {
+            QString week = currentTime.toString("ddd");
+            int num_week;
+            if(week=="星期一")
+                num_week=0;
+            else if(week=="星期二")
+                num_week=1;
+            else if(week=="星期三")
+                num_week=2;
+            else if(week=="星期四")
+                num_week=3;
+            else if(week=="星期五")
+                num_week=4;
+            else if(week=="星期六")
+                num_week=5;
+            else
+                num_week=6;
+            for(int i=0;;++i)
+            {
+                if(m_taskData.getRepeatDays()[(i+num_week)%7]==0)
+                    continue;
+                finalStartTime.setDate(currentTime.date().addDays(i));
+                sec = currentTime.secsTo(finalStartTime);
+                if(sec<60)
+                    continue;
+                timer = new QTimer();
+                timer->start(sec*1000);
+                timer->setSingleShot(true);
+                break;
+            }
+        }
+    }
+
 }
 
 void SearchResultWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -162,12 +223,14 @@ void SearchResultWidget::setupUi() {
     QLabel *nameLabel = nullptr;
 
     if (m_taskData.type() == SingleTask) {
-        if (m_taskData.startTime().date() == m_taskData.endTime().date()) {
+        /*if (m_taskData.startTime().date() == m_taskData.endTime().date()) {
             timeLabel = new QLabel(QString("%1 - %2 ")
                                        .arg(m_taskData.startTime().toString("yyyy-MM-dd HH:mm"))
                                        .arg(m_taskData.endTime().toString("yyyy-MM-dd HH:mm")));
-        }
-
+        }*/
+        timeLabel = new QLabel(QString("%1 - %2 ")
+                                   .arg(m_taskData.startTime().toString("yyyy-MM-dd HH:mm"))
+                                   .arg(m_taskData.endTime().toString("yyyy-MM-dd HH:mm")));
         nameLabel = new QLabel(QString("计划: %1").arg(m_taskData.name()), this);
     } else if (m_taskData.type() == RepeatedTask) {
         timeLabel = new QLabel(QString("时间段: %1 - %2  具体日期请看详情")
@@ -268,6 +331,8 @@ void SearchResultWidget::onEdit()
     editTaskUI.setModifyMode(m_taskData);
     editTaskUI.setTaskData(m_taskData);
     editTaskUI.exec();
+    if(timer != nullptr)
+        timer->stop();
     m_taskData = editTaskUI.getData();
     emit editFinished();
 }
@@ -289,6 +354,8 @@ void SearchResultWidget::onDelete()
         MyDataBase db;
         db.openDb();
         db.deleteTaskData(m_taskData);
+        if(timer != nullptr)
+            timer->stop();
         emit editFinished();
     } else {
         qDebug() << "取消删除任务" << m_taskData.name();
@@ -354,6 +421,11 @@ void TodayTasksWidget::setupUi()
     mainLayout->addWidget(tasksTable);
 
     setLayout(mainLayout);
+
+    trayIcon = new QSystemTrayIcon();
+    trayIcon->setIcon(QIcon(":/icons/widgets_icons/check-sign-in-a-rounded-black-square.png"));
+    trayIcon->setToolTip(QString("PKUToDo"));
+    trayIcon->show();
 }
 
 bool compareStartTime(const TaskData &task1, const TaskData &task2) {
@@ -379,11 +451,23 @@ void TodayTasksWidget::displayTodayTasks()
     tasksTable->setRowCount(todayTasks.size());
     for (int row = 0; row < todayTasks.size(); ++row) {
         SearchResultWidget *taskWidget = new SearchResultWidget(sortedTasks[row], this);
+        taskWidget->setAlarm();
+        if(taskWidget->timer!=nullptr)
+        {
+            qDebug()<<"Signal Formed.";
+            connect(taskWidget->timer,&QTimer::timeout,this,[name = taskWidget->taskData().name(),this](){this->trayIcon->showMessage("提醒", name+QString("计划事项即将开始"));});
+        }
         connect(taskWidget,&SearchResultWidget::editFinished,this,&TodayTasksWidget::TodayUpdate);
         tasksTable->setCellWidget(row, 0, taskWidget);
         tasksTable->setRowHeight(row, 50);
     }
 }
+
+/*void TodayTasksWidget::presentNotice(const QString &name)
+{
+    trayIcon->showMessage("提醒", name);
+    qDebug()<<"Showed.";
+}*/
 
 ToDoWidget::ToDoWidget(const ToDoData &toDoData, QWidget *parent) :
     QWidget(parent),m_data(toDoData) {
@@ -490,13 +574,15 @@ void ToDoWidget::on_startButton_clicked()
 
 
     CountdownWidget *countdownWidget = new CountdownWidget(m_data);
-    countdownWidget->setWindowModality(Qt::WindowModal);
+    countdownWidget->setWindowModality(Qt::ApplicationModal);
     QIcon windowIcon(":/icons/widgets_icons/wristwatch.png");
     countdownWidget->setWindowIcon(windowIcon);
+    countdownWidget->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint);
 
     QPalette PAllbackground = this->palette();
     //QImage ImgAllbackground(":/background/background/background_canoe.png");
     QImage ImgAllbackground(getRandomBackground());
+    qDebug()<<getRandomBackground();
     QImage fitimgpic=ImgAllbackground.scaled(countdownWidget->width(),countdownWidget->height(), Qt::IgnoreAspectRatio);
     PAllbackground.setBrush(QPalette::Window, QBrush(fitimgpic));
     countdownWidget->setPalette(PAllbackground);
